@@ -1,6 +1,7 @@
 # Panusbodee Portfolio
 
 เว็บไซต์พอร์ตโฟลิโอส่วนตัวของ `Panusbodee Pisutsuwimon` พัฒนาด้วย `React + TypeScript + Vite + Tailwind CSS`
+Deploy ผ่าน GitHub Actions ไป GitHub Pages
 
 ## เริ่มใช้งานในเครื่อง
 
