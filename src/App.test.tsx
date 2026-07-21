@@ -51,18 +51,36 @@ describe('Portfolio app', () => {
     expect(
       screen.getByRole('heading', { name: /Visual archive for work in motion\./i }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByAltText(/temporary pass and coffee during an early workday/i),
-    ).toBeInTheDocument()
+    expect(screen.getByAltText(/legacy project image from the original framer portfolio/i)).toBeInTheDocument()
   })
 
   it('renders process and systems images on the about page', () => {
     window.location.hash = '#/about'
     render(<App />)
 
-    expect(screen.getByAltText(/process flow mapped on a whiteboard/i)).toBeInTheDocument()
+    expect(screen.getByAltText(/legacy process image from the original framer portfolio/i)).toBeInTheDocument()
     expect(
-      screen.getByAltText(/terminal session showing technical tools and logs/i),
+      screen.getByAltText(/legacy technical and interface image from the original framer portfolio/i),
     ).toBeInTheDocument()
+  })
+
+  it('uses legacy framer assets for the home visual archive', () => {
+    window.location.hash = '#/'
+    render(<App />)
+
+    const image = screen.getByAltText(/legacy project image from the original framer portfolio/i)
+    expect(image).toHaveAttribute('src', expect.stringContaining('framerusercontent.com/images'))
+  })
+
+  it('uses legacy framer assets for work case studies', () => {
+    window.location.hash = '#/works/project-management'
+    render(<App />)
+
+    expect(
+      screen.getByAltText(/Lead Project \(PM\) \/ Project Management/i),
+    ).toHaveAttribute(
+      'src',
+      expect.stringContaining('framerusercontent.com/images/dTRcdFRu3rTiJJGCQVUxodknYY'),
+    )
   })
 })

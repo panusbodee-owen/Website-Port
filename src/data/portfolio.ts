@@ -40,17 +40,6 @@ export type VisualItem = {
   image: string
 }
 
-type ImageSize =
-  | 'square_hd'
-  | 'square'
-  | 'portrait_4_3'
-  | 'portrait_16_9'
-  | 'landscape_4_3'
-  | 'landscape_16_9'
-
-const createImage = (prompt: string, imageSize: ImageSize) =>
-  `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${imageSize}`
-
 export const profile = {
   name: 'Panusbodee Pisutsuwimon',
   shortName: 'Owen',
@@ -184,10 +173,8 @@ export const works: WorkItem[] = [
       'Delivered the project on schedule with stronger team coordination, better communication, and a more coherent output across design and implementation.',
     credits: 'https://canva.link/s4eg3vo1odkqiom',
     tags: ['Leadership', 'Planning', 'Cross-functional'],
-    image: createImage(
-      'luxury editorial portfolio image of a calm project lead reviewing interface wireframes and timeline sheets on a large desk, warm ivory paper, bronze accents, soft directional light, premium magazine photography, refined minimalism',
-      'landscape_16_9',
-    ),
+    image:
+      'https://framerusercontent.com/images/dTRcdFRu3rTiJJGCQVUxodknYY.png?width=4032&height=3024',
   },
   {
     slug: 'ui-figma',
@@ -206,10 +193,8 @@ export const works: WorkItem[] = [
       'Helped shape project outputs with stronger clarity between problem analysis and interface decisions, contributing to more grounded design work.',
     credits: 'https://bit.ly/4esKj1c',
     tags: ['UX Research', 'UI Systems', 'R&D'],
-    image: createImage(
-      'editorial technology still life showing elegant figma-like interface layouts, paper notes, refined neutral palette, soft grain texture, premium design studio atmosphere, claude-inspired calm minimalism',
-      'portrait_4_3',
-    ),
+    image:
+      'https://framerusercontent.com/images/DMd4e3XSoFOllgczwuohUpFay9Q.png?width=1812&height=962',
   },
   {
     slug: 'champ-silencieux',
@@ -228,10 +213,8 @@ export const works: WorkItem[] = [
       'Improved operational clarity for configuration and reporting while reinforcing the connection between technical architecture and business workflows.',
     credits: 'Owen Panusbodee',
     tags: ['Odoo', 'Business Logic', 'Implementation'],
-    image: createImage(
-      'refined dashboard composition with inventory flows, accounting ledgers, and manufacturing diagrams arranged like a premium annual report, ivory and graphite palette, intelligent system design aesthetic',
-      'landscape_16_9',
-    ),
+    image:
+      'https://framerusercontent.com/images/5WAAHq4ytW6RXbPs8TI785bqZ0.jpg?width=1206&height=728',
   },
   {
     slug: 'lead-projects',
@@ -250,10 +233,8 @@ export const works: WorkItem[] = [
       'Delivered a more coherent thesis direction and a clearer bridge between conceptual ideas, technical structure, and team output.',
     credits: 'https://canva.link/bllfumarx98vdp5',
     tags: ['Thesis', 'Systems Thinking', 'Ownership'],
-    image: createImage(
-      'quiet luxury academic project presentation scene, thesis boards, interface diagrams, polished black and ivory materials, sophisticated editorial photography, calm composition',
-      'portrait_16_9',
-    ),
+    image:
+      'https://framerusercontent.com/images/Dqr2YnHI6r4j8p1PLXWSjfzED0c.jpg?width=3072&height=2048',
   },
   {
     slug: 'lisiere',
@@ -272,10 +253,8 @@ export const works: WorkItem[] = [
       'Strengthened adaptability, business literacy, and a broader understanding of how structured management decisions influence large-scale organizations.',
     credits: 'Owen Panusbodee',
     tags: ['Operations', 'Strategy', 'Business Analysis'],
-    image: createImage(
-      'premium retail strategy editorial image with clean product grids, analytical notes, and executive briefing materials, muted champagne and charcoal palette, refined contemporary layout',
-      'landscape_4_3',
-    ),
+    image:
+      'https://framerusercontent.com/images/DPEBT6GZbJzOBXeMUlOh100tXcA.png?width=4032&height=3024',
   },
 ]
 
@@ -287,36 +266,30 @@ export const getWorkBySlug = (slug: string) =>
 export const homeVisuals: VisualItem[] = [
   {
     slug: 'field-pass',
-    title: 'Field Access',
-    alt: 'Temporary pass and coffee during an early workday',
+    title: 'Original Portfolio Frame',
+    alt: 'Legacy project image from the original Framer portfolio',
     summary:
-      'A candid workday moment that fits the part of my practice grounded in real environments, context switching, and being close to operations.',
-    image: createImage(
-      'black and white editorial photograph of a hand holding a temporary employee pass above a wooden worktable with an iced coffee cup and a closed laptop in the background, candid documentary style, soft blur, premium monochrome magazine photography',
-      'portrait_4_3',
-    ),
+      'Pulled directly from the previous portfolio, this frame keeps the site connected to the visual history of your earlier work.',
+    image:
+      'https://framerusercontent.com/images/KUv0t49lXtGxglTIPzqCeZlE.png?width=3024&height=4032',
   },
   {
     slug: 'market-screen',
-    title: 'Precision Under Pressure',
-    alt: 'Laptop screen showing financial charts and performance metrics',
+    title: 'Markets & Precision',
+    alt: 'Legacy trading and analytical visual from the original Framer portfolio',
     summary:
-      'I stay interested in systems where timing, data, and disciplined interpretation matter, especially financial and analytical environments.',
-    image: createImage(
-      'black and white photograph of a laptop screen showing dense financial trading charts, grid lines, statistics panels, and performance metrics, realistic desk setup, sharp contrast, refined monochrome technology editorial style',
-      'landscape_16_9',
-    ),
+      'This visual keeps the financial and analytical side of your interests present in the portfolio without breaking the monochrome direction.',
+    image:
+      'https://framerusercontent.com/images/X5yLIV8CfWCaglpsDJ6Af0zohn8.png?width=2268&height=4032',
   },
   {
     slug: 'portrait-mark',
     title: 'Personal Mark',
-    alt: 'Minimal black and white portrait illustration',
+    alt: 'Legacy identity image from the original Framer portfolio',
     summary:
-      'A softer counterpoint for the portfolio, used like a personal stamp rather than a formal corporate headshot.',
-    image: createImage(
-      'minimal black and white line illustration portrait of a young professional with simple rounded features, thick ink outlines, quiet playful character, clean white background, editorial identity mark',
-      'square_hd',
-    ),
+      'A softer personal layer from the earlier site, now treated as a quiet identity card within the new black-and-white system.',
+    image:
+      'https://framerusercontent.com/images/pt6lpnlvb0QcaqSil4YarNSH588.png?width=1320&height=1320',
   },
 ]
 
@@ -324,23 +297,19 @@ export const aboutVisuals: VisualItem[] = [
   {
     slug: 'whiteboard-flow',
     title: 'Process Mapping',
-    alt: 'Process flow mapped on a whiteboard',
+    alt: 'Legacy process image from the original Framer portfolio',
     summary:
-      'This is the side of my work that likes to turn ambiguity into steps, conditions, and decisions people can follow.',
-    image: createImage(
-      'black and white photo of a whiteboard filled with process flow diagrams, arrows, handwritten notes, and structured system thinking, office wall setting, documentary editorial photography, realistic monochrome grain',
-      'portrait_4_3',
-    ),
+      'Used to support the story about structure and logic, this image comes from the earlier case-study material in the original site.',
+    image:
+      'https://framerusercontent.com/images/PUTFCZcvk28d06MRsykiyBdll5w.png?width=2778&height=1284',
   },
   {
     slug: 'terminal-tools',
     title: 'Technical Curiosity',
-    alt: 'Terminal session showing technical tools and logs',
+    alt: 'Legacy technical and interface image from the original Framer portfolio',
     summary:
-      'Even when I work from a PM or functional angle, I like staying close to tools, logs, and technical surfaces so decisions remain grounded.',
-    image: createImage(
-      'black and white close-up photograph of a laptop screen showing a terminal session with command line tools, logs, ASCII interface, and developer workflow, cinematic contrast, realistic monochrome editorial photography',
-      'portrait_4_3',
-    ),
+      'This image keeps the technical layer visible and ties the About page back to the original case studies from the older portfolio.',
+    image:
+      'https://framerusercontent.com/images/IBZii1CXkqb7P48GTVXHYSMytE.png?width=1746&height=716',
   },
 ]
