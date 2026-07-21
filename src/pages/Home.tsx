@@ -107,6 +107,19 @@ export default function Home() {
             onMouseLeave={resetHeroMove}
           >
             <div
+              className="hero-card overflow-hidden rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55"
+              style={{
+                transform: `translate3d(${heroShift.x * -14}px, ${heroShift.y * -10}px, 0)`,
+              }}
+            >
+              <img
+                src={homeVisuals[2].image}
+                alt={homeVisuals[2].alt}
+                className="monochrome-media h-[19rem] w-full object-cover"
+              />
+            </div>
+
+            <div
               className="hero-card rounded-[2rem] p-6 backdrop-blur glass-surface"
               style={{
                 transform: `translate3d(${heroShift.x * 10}px, ${heroShift.y * 8}px, 0)`,
@@ -121,19 +134,6 @@ export default function Home() {
               <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.66)]">
                 {profile.intro}
               </p>
-            </div>
-
-            <div
-              className="hero-card overflow-hidden rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55"
-              style={{
-                transform: `translate3d(${heroShift.x * -14}px, ${heroShift.y * -10}px, 0)`,
-              }}
-            >
-              <img
-                src={homeVisuals[2].image}
-                alt={homeVisuals[2].alt}
-                className="monochrome-media h-[19rem] w-full object-cover"
-              />
             </div>
 
             <div
