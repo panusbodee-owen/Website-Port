@@ -5,7 +5,7 @@ import App from './App'
 
 describe('Portfolio app', () => {
   it('renders home page hero content', () => {
-    window.history.pushState({}, '', '/')
+    window.location.hash = '#/'
     render(<App />)
 
     expect(
@@ -14,7 +14,7 @@ describe('Portfolio app', () => {
   })
 
   it('renders work detail route', () => {
-    window.history.pushState({}, '', '/works/project-management')
+    window.location.hash = '#/works/project-management'
     render(<App />)
 
     expect(

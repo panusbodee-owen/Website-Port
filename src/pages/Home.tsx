@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { ArrowDownRight, ArrowUpRight, Dot, Sparkles } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import LinkPill from '@/components/LinkPill'
 import SectionHeading from '@/components/SectionHeading'
@@ -10,6 +11,22 @@ import { notes, portfolioLinks, profile, works } from '@/data/portfolio'
 const selectedWorks = works.slice(0, 4)
 
 export default function Home() {
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const section = searchParams.get('section')
+    if (!section) return
+
+    const element = document.getElementById(section)
+    if (!element) return
+
+    const timer = window.setTimeout(() => {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
+
+    return () => window.clearTimeout(timer)
+  }, [searchParams])
+
   return (
     <div
       id="top"
@@ -40,13 +57,13 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <a
-                href="#works"
+              <Link
+                to="/?section=works"
                 className="inline-flex items-center gap-2 rounded-full bg-stone-950 px-6 py-3 text-sm text-stone-50 transition hover:-translate-y-0.5 hover:bg-stone-800"
               >
                 Explore selected work
                 <ArrowDownRight size={16} />
-              </a>
+              </Link>
               <a
                 href={portfolioLinks[1].href}
                 target="_blank"
