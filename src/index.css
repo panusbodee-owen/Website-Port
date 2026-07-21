@@ -1,17 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-body: 'Manrope', 'Segoe UI', 'Noto Sans', sans-serif;
-  --bg-canvas: #f7f1e8;
-  --text-primary: #1c1917;
-  --text-secondary: #57534e;
-  --line-subtle: rgba(120, 113, 108, 0.35);
-  --accent-soft: #d6b480;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Instrument Sans', 'Segoe UI', 'Noto Sans', sans-serif;
+  --bg-canvas: #07070c;
+  --bg-depth: #0b0b14;
+  --text-primary: #eef0ff;
+  --text-secondary: rgba(238, 240, 255, 0.72);
+  --text-tertiary: rgba(238, 240, 255, 0.5);
+  --line-subtle: rgba(238, 240, 255, 0.12);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --accent-a: #7ee7ff;
+  --accent-b: #d2ff8f;
+  --accent-c: #ffcf8a;
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
@@ -28,7 +34,10 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg-canvas);
+  background: radial-gradient(circle at top left, rgba(126, 231, 255, 0.16), transparent 35%),
+    radial-gradient(circle at 30% 60%, rgba(210, 255, 143, 0.08), transparent 40%),
+    radial-gradient(circle at top right, rgba(255, 207, 138, 0.1), transparent 32%),
+    linear-gradient(180deg, var(--bg-canvas), var(--bg-depth));
   color: var(--text-primary);
   font-family: var(--font-body);
 }
@@ -39,7 +48,7 @@ a {
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .font-body {
@@ -47,9 +56,21 @@ a {
 }
 
 .page-grain {
-  background-image: radial-gradient(var(--line-subtle) 0.7px, transparent 0.7px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 0.6px, transparent 0.6px);
   background-size: 3px 3px;
-  mix-blend-mode: multiply;
+  mix-blend-mode: overlay;
+}
+
+.glass-surface {
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 @media (prefers-reduced-motion: reduce) {

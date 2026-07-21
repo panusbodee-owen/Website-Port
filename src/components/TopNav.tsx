@@ -11,10 +11,10 @@ const navItems = [
 export default function TopNav() {
   return (
     <header className="sticky top-0 z-30">
-      <div className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-full border border-white/70 bg-[rgba(250,246,240,0.8)] px-4 py-3 shadow-[0_12px_40px_rgba(28,25,23,0.08)] backdrop-blur md:mt-6 md:px-6">
+      <div className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-full px-4 py-3 backdrop-blur md:mt-6 md:px-6 glass-surface">
         <Link
           to="/"
-          className="font-body text-xs uppercase tracking-[0.35em] text-stone-700"
+          className="font-body text-xs uppercase tracking-[0.35em] text-[rgba(238,240,255,0.84)]"
         >
           Panusbodee
         </Link>
@@ -24,7 +24,7 @@ export default function TopNav() {
             <Link
               key={item.label}
               to={item.to}
-              className="text-sm text-stone-600 transition hover:text-stone-950"
+              className="text-sm text-[rgba(238,240,255,0.66)] transition hover:text-[rgba(238,240,255,0.95)]"
             >
               {item.label}
             </Link>
@@ -34,14 +34,14 @@ export default function TopNav() {
         <div className="flex items-center gap-2">
           <Link
             to="/?section=contact"
-            className="hidden items-center gap-2 rounded-full border border-stone-300/80 px-4 py-2 text-sm text-stone-800 transition hover:-translate-y-0.5 hover:border-stone-500 hover:bg-white md:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.82)] transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10 md:inline-flex"
           >
             Start a conversation
             <ArrowUpRight size={16} />
           </Link>
           <Link
             to="/?section=works"
-            className="inline-flex rounded-full border border-stone-300/80 px-4 py-2 text-sm text-stone-700 transition hover:border-stone-500 hover:bg-white md:hidden"
+            className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.75)] transition hover:border-white/25 hover:bg-white/10 md:hidden"
           >
             Works
           </Link>

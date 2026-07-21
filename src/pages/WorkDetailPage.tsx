@@ -16,59 +16,66 @@ export default function WorkDetailPage() {
   const previousWork = works[(currentIndex - 1 + works.length) % works.length]
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(214,180,128,0.16),transparent_28%),#f7f1e8] px-4 pb-16 pt-8 md:px-6 md:pb-24 md:pt-10">
+    <main className="relative min-h-screen px-4 pb-16 pt-8 md:px-6 md:pb-24 md:pt-10">
+      <div className="page-grain pointer-events-none absolute inset-0 opacity-30" />
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white/60 px-4 py-2 text-sm text-stone-700 transition hover:border-stone-500 hover:bg-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.78)] transition hover:border-white/25 hover:bg-white/10"
           >
             <ArrowLeft size={16} />
             Back to home
           </Link>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white/60 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-500">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.55)]">
             <span>{currentWork.category}</span>
             <span>•</span>
             <span>{currentWork.year}</span>
           </div>
         </div>
 
-        <header className="grid gap-8 rounded-[2.4rem] border border-stone-200/80 bg-[rgba(255,252,247,0.78)] p-6 shadow-[0_25px_70px_rgba(28,25,23,0.08)] md:p-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <header className="grid gap-8 rounded-[2.6rem] p-6 md:p-8 lg:grid-cols-[1.1fr_0.9fr] glass-surface">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.28em] text-stone-500">
+            <p className="text-xs uppercase tracking-[0.28em] text-[rgba(238,240,255,0.55)]">
               Case Study
             </p>
-            <h1 className="font-display text-4xl leading-tight text-stone-950 md:text-6xl">
+            <h1 className="font-display text-4xl leading-tight text-[rgba(238,240,255,0.92)] md:text-6xl">
               {currentWork.title}
             </h1>
-            <p className="max-w-xl text-sm leading-7 text-stone-600 md:text-base">
+            <p className="max-w-xl text-sm leading-7 text-[rgba(238,240,255,0.66)] md:text-base">
               {currentWork.summary}
             </p>
 
-            <div className="grid gap-4 border-t border-stone-200 pt-5 sm:grid-cols-3">
+            <div className="grid gap-4 border-t border-white/10 pt-5 sm:grid-cols-3">
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
                   Role
                 </p>
-                <p className="mt-2 text-sm text-stone-800">{currentWork.role}</p>
+                <p className="mt-2 text-sm text-[rgba(238,240,255,0.78)]">
+                  {currentWork.role}
+                </p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
                   Client
                 </p>
-                <p className="mt-2 text-sm text-stone-800">{currentWork.client}</p>
+                <p className="mt-2 text-sm text-[rgba(238,240,255,0.78)]">
+                  {currentWork.client}
+                </p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
                   Year
                 </p>
-                <p className="mt-2 text-sm text-stone-800">{currentWork.year}</p>
+                <p className="mt-2 text-sm text-[rgba(238,240,255,0.78)]">
+                  {currentWork.year}
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[1.8rem] border border-stone-200 bg-stone-100">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
             <img
               src={currentWork.image}
               alt={currentWork.title}
@@ -78,35 +85,35 @@ export default function WorkDetailPage() {
         </header>
 
         <section className="grid gap-5 md:grid-cols-3">
-          <article className="rounded-[1.6rem] border border-stone-200/80 bg-white/80 p-5">
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+          <article className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
               Challenge
             </p>
-            <p className="mt-4 text-sm leading-7 text-stone-700">
+            <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.7)]">
               {currentWork.challenge}
             </p>
           </article>
-          <article className="rounded-[1.6rem] border border-stone-200/80 bg-white/80 p-5">
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+          <article className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
               Approach
             </p>
-            <p className="mt-4 text-sm leading-7 text-stone-700">
+            <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.7)]">
               {currentWork.approach}
             </p>
           </article>
-          <article className="rounded-[1.6rem] border border-stone-200/80 bg-white/80 p-5">
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+          <article className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
               Outcome
             </p>
-            <p className="mt-4 text-sm leading-7 text-stone-700">
+            <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.7)]">
               {currentWork.outcome}
             </p>
           </article>
         </section>
 
-        <section className="rounded-[2rem] border border-stone-200/80 bg-white/75 p-6 md:p-8">
+        <section className="rounded-[2.6rem] p-6 md:p-8 glass-surface">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <h2 className="font-display text-3xl text-stone-900 md:text-4xl">
+            <h2 className="font-display text-3xl text-[rgba(238,240,255,0.92)] md:text-4xl">
               Project Tags
             </h2>
             {currentWork.credits.startsWith('http') ? (
@@ -114,7 +121,7 @@ export default function WorkDetailPage() {
                 href={currentWork.credits}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-4 py-2 text-sm text-stone-700 transition hover:border-stone-500 hover:bg-stone-950 hover:text-stone-50"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.75)] transition hover:border-white/25 hover:bg-white/10"
               >
                 Open credits
                 <ArrowUpRight size={16} />
@@ -125,29 +132,29 @@ export default function WorkDetailPage() {
             {currentWork.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-stone-300 bg-stone-50 px-4 py-2 text-sm text-stone-700"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.72)]"
               >
                 {tag}
               </span>
             ))}
           </div>
           {currentWork.credits.startsWith('http') ? null : (
-            <p className="mt-6 text-sm leading-7 text-stone-500">
+            <p className="mt-6 text-sm leading-7 text-[rgba(238,240,255,0.6)]">
               Credits: {currentWork.credits}
             </p>
           )}
         </section>
 
-        <section className="grid gap-4 rounded-[2rem] border border-stone-200/80 bg-stone-950 p-6 text-stone-50 md:grid-cols-2 md:p-8">
+        <section className="grid gap-4 rounded-[2.6rem] p-6 text-[rgba(238,240,255,0.9)] md:grid-cols-2 md:p-8 glass-surface">
           <Link
             to={`/works/${previousWork.slug}`}
             className="group rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition hover:border-white/20 hover:bg-white/10"
           >
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+            <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
               Previous project
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
-              <p className="font-display text-2xl leading-tight text-stone-50">
+              <p className="font-display text-2xl leading-tight text-[rgba(238,240,255,0.92)]">
                 {previousWork.title}
               </p>
               <ArrowLeft
@@ -160,11 +167,11 @@ export default function WorkDetailPage() {
             to={`/works/${nextWork.slug}`}
             className="group rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition hover:border-white/20 hover:bg-white/10"
           >
-            <p className="text-xs uppercase tracking-[0.24em] text-stone-400">
+            <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
               Next project
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
-              <p className="font-display text-2xl leading-tight text-stone-50">
+              <p className="font-display text-2xl leading-tight text-[rgba(238,240,255,0.92)]">
                 {nextWork.title}
               </p>
               <ArrowRight

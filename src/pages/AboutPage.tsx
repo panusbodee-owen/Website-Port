@@ -3,45 +3,45 @@ import { Link } from 'react-router-dom'
 
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
-import { portfolioLinks, profile } from '@/data/portfolio'
+import { portfolioLinks, profile, skills, timeline, tools } from '@/data/portfolio'
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(214,180,128,0.16),transparent_30%),#f7f1e8]">
-      <div className="page-grain pointer-events-none absolute inset-0 opacity-50" />
+    <div className="relative min-h-screen">
+      <div className="page-grain pointer-events-none absolute inset-0 opacity-30" />
       <TopNav />
 
       <main className="mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-14">
-        <section className="grid gap-8 rounded-[2.4rem] border border-stone-200/80 bg-[rgba(255,252,247,0.78)] p-6 shadow-[0_25px_70px_rgba(28,25,23,0.08)] md:p-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 lg:grid-cols-[1.1fr_0.9fr] glass-surface">
           <SectionHeading
             eyebrow="About"
-            title="เรื่องราวของผม"
-            description="ผมชอบงานที่ต้องใช้ความคิดเป็นระบบ แต่ยังรักษาความละเมียดของงานภาพและประสบการณ์ผู้ใช้ไว้เสมอ"
+            title="The story behind the work."
+            description="I work where project structure, calm visual design, and systems thinking meet—so complexity becomes something people can actually move with."
           />
 
           <div className="space-y-6">
-            <div className="rounded-[2rem] border border-stone-200/80 bg-white/70 p-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-stone-400">
-                สรุปตัวตน
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
+                Summary
               </p>
-              <p className="mt-4 text-sm leading-7 text-stone-700">
-                ผมชื่อ {profile.shortName} ({profile.name}) ทำงานในจุดตัดระหว่าง
-                การจัดการโปรเจกต์, การออกแบบ UI และการคิดเชิงกระบวนการ
-                เพื่อแปลง “ความซับซ้อน” ให้กลายเป็น “ความชัดเจน” ที่ใช้งานได้จริง
+              <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.72)]">
+                I'm {profile.shortName} ({profile.name}). I lead work across project management,
+                UI design, and process thinking—bridging stakeholders, logic, and visual decisions
+                to deliver outcomes that feel intentional, not rushed.
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-stone-200/80 bg-stone-950 p-6 text-stone-50">
-              <p className="text-xs uppercase tracking-[0.3em] text-stone-400">
-                สิ่งที่ผมเชื่อ
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
+                Principles
               </p>
               <div className="mt-4 space-y-3">
                 {profile.principles.map((principle) => (
                   <div
                     key={principle}
-                    className="flex items-center gap-2 border-b border-white/10 pb-3 text-sm text-stone-200 last:border-b-0"
+                    className="flex items-center gap-2 border-b border-white/10 pb-3 text-sm text-[rgba(238,240,255,0.72)] last:border-b-0"
                   >
-                    <Dot size={18} className="text-amber-300" />
+                    <Dot size={18} className="text-[rgba(126,231,255,0.9)]" />
                     {principle}
                   </div>
                 ))}
@@ -50,38 +50,85 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="grid gap-8 rounded-[2.4rem] border border-stone-200/80 bg-[rgba(255,252,247,0.72)] p-6 md:p-10">
-          <h2 className="font-display text-4xl leading-tight text-stone-950 md:text-5xl">
-            ทำไมผมถึงทำพอร์ตแบบนี้
+        <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
+          <h2 className="font-display text-4xl leading-tight text-[rgba(238,240,255,0.92)] md:text-5xl">
+            A calm way to tell a serious story.
           </h2>
-          <div className="grid gap-6 text-sm leading-7 text-stone-600 md:grid-cols-2">
-            <p>
-              ผมอยากให้คนที่เข้ามาอ่านพอร์ต เข้าใจตัวตนและวิธีทำงานของผมได้เร็ว
-              แต่ไม่รู้สึกว่า “ยัดข้อมูล” หรือ “พยายามขายตัวเอง” เกินไป
-              พอร์ตนี้เลยถูกออกแบบให้มีจังหวะการอ่านแบบ editorial: เงียบ สุขุม
-              และเลือกพูดเฉพาะสิ่งที่สำคัญจริง
-            </p>
-            <p>
-              งานของผมส่วนใหญ่คือการทำให้ทีมทำงานร่วมกันได้ลื่นขึ้น
-              ทำให้ stakeholder เห็นภาพเดียวกันเร็วขึ้น
-              และทำให้ interface หรือระบบที่สร้างออกมา “ใช้งานได้จริง” ภายใต้ข้อจำกัด
-              ในโลกจริง
-            </p>
+          <div className="grid gap-6 text-sm leading-7 text-[rgba(238,240,255,0.66)] md:grid-cols-2">
+            {profile.aboutLong.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </section>
 
-        <section className="grid gap-8 rounded-[2.4rem] border border-stone-200/80 bg-[rgba(255,252,247,0.72)] p-6 md:p-10">
-          <h2 className="font-display text-4xl leading-tight text-stone-950 md:text-5xl">
-            ช่องทางติดต่อ
+        <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
+          <h2 className="font-display text-4xl leading-tight text-[rgba(238,240,255,0.92)] md:text-5xl">
+            Timeline
           </h2>
-          <div className="grid gap-3">
+          <div className="grid gap-4">
+            {timeline.map((item) => (
+              <div
+                key={`${item.year}-${item.title}`}
+                className="grid gap-3 rounded-[1.8rem] border border-white/10 bg-white/5 p-6 md:grid-cols-[0.2fr_0.8fr]"
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
+                  {item.year}
+                </p>
+                <div className="space-y-2">
+                  <p className="text-sm text-[rgba(238,240,255,0.92)]">
+                    {item.title}
+                  </p>
+                  <p className="text-sm text-[rgba(238,240,255,0.6)]">
+                    {item.org}
+                  </p>
+                  <p className="text-sm leading-7 text-[rgba(238,240,255,0.66)]">
+                    {item.summary}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
+          <h2 className="font-display text-4xl leading-tight text-[rgba(238,240,255,0.92)] md:text-5xl">
+            Skills & Tools
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {skills.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6"
+              >
+                <p className="text-sm text-[rgba(238,240,255,0.92)]">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[rgba(238,240,255,0.66)]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {tools.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-[rgba(238,240,255,0.7)]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
             {portfolioLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between rounded-[1.4rem] border border-stone-200 bg-white/80 px-5 py-4 text-sm text-stone-700 transition hover:-translate-y-0.5 hover:border-stone-400 hover:bg-white"
+                className="flex items-center justify-between rounded-[1.6rem] border border-white/10 bg-white/5 px-5 py-5 text-sm text-[rgba(238,240,255,0.72)] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
               >
                 <span>{item.label}</span>
                 <ArrowUpRight size={18} />
@@ -89,12 +136,12 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div>
+          <div className="flex flex-wrap gap-3">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-5 py-3 text-sm text-stone-800 transition hover:border-stone-500 hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-[rgba(238,240,255,0.82)] transition hover:border-white/25 hover:bg-white/10"
             >
-              กลับหน้าแรก
+              Back to home
             </Link>
           </div>
         </section>
@@ -102,4 +149,3 @@ export default function AboutPage() {
     </div>
   )
 }
-

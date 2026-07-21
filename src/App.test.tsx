@@ -23,4 +23,13 @@ describe('Portfolio app', () => {
       }),
     ).toBeInTheDocument()
   })
+
+  it('renders about page', () => {
+    window.location.hash = '#/about'
+    render(<App />)
+
+    expect(
+      screen.getByRole('heading', { name: /The story behind the work\./i }),
+    ).toBeInTheDocument()
+  })
 })

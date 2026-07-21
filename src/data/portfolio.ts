@@ -4,6 +4,18 @@ export type PortfolioLink = {
   description: string
 }
 
+export type TimelineItem = {
+  year: string
+  title: string
+  org: string
+  summary: string
+}
+
+export type SkillItem = {
+  label: string
+  description: string
+}
+
 export type WorkItem = {
   slug: string
   title: string
@@ -35,6 +47,7 @@ export const profile = {
   name: 'Panusbodee Pisutsuwimon',
   shortName: 'Owen',
   title: 'Project Lead, UI Designer, Functional Thinker',
+  avatar: undefined as string | undefined,
   intro:
     'I shape digital work with a calm visual language, structured thinking, and a strong bias toward clarity.',
   location: 'Bangkok, Thailand',
@@ -45,12 +58,76 @@ export const profile = {
     'I work at the intersection of project management, UI design, and process thinking. My background lets me move comfortably between stakeholders, logic, and visual direction.',
     'What I care about most is making complexity feel simple. I like systems that are elegant, projects that run clearly, and interfaces that feel intentional rather than loud.',
   ],
+  aboutLong: [
+    'My work lives where structure meets taste. I enjoy shaping projects from ambiguity into a clear plan, aligning people around milestones, and keeping execution calm even under pressure.',
+    'I care about interfaces that feel intentional: clean hierarchy, disciplined spacing, and motion that supports comprehension, not distraction.',
+    'I am comfortable moving between stakeholders, system logic, and visual decisions—because in real projects, clarity is a shared outcome, not a single role.',
+  ],
   principles: [
     'Clarity over noise',
     'Process before polish',
     'Visual restraint with strong point of view',
   ],
 }
+
+export const skills: SkillItem[] = [
+  {
+    label: 'Project ownership',
+    description: 'Requirement framing, timelines, stakeholder alignment, and delivery rhythm.',
+  },
+  {
+    label: 'Process-oriented design',
+    description: 'From problem analysis to usable UI artifacts with clear rationale.',
+  },
+  {
+    label: 'Systems thinking',
+    description: 'Connecting business rules, constraints, and implementation details.',
+  },
+  {
+    label: 'Execution under constraints',
+    description: 'Balancing quality, scope, and time without losing clarity.',
+  },
+]
+
+export const tools: string[] = [
+  'Figma',
+  'Notion',
+  'Google Workspace',
+  'Odoo (Functional Modules)',
+  'Tailwind CSS',
+  'Basic Python (learning)',
+]
+
+export const timeline: TimelineItem[] = [
+  {
+    year: '2025',
+    title: 'Odoo Functional Consultant / ERP Implementer',
+    org: 'Duckgrammer',
+    summary:
+      'Configured and implemented Odoo v18 modules across manufacturing, inventory, sales, purchase, and accounting with emphasis on real business logic.',
+  },
+  {
+    year: '2025',
+    title: 'Management Trainee',
+    org: 'CP Axtra (Makro)',
+    summary:
+      'Rotational exposure to business operations, creative strategy, and business analysis inside a large retail ecosystem.',
+  },
+  {
+    year: '2024',
+    title: 'Process-Oriented UI Designer (Internship)',
+    org: 'Creative Era Co., Ltd',
+    summary:
+      'Supported UX research, R&D, and UI work across multiple internal product contexts with a process-first mindset.',
+  },
+  {
+    year: '2024',
+    title: 'Lead Project / Thesis',
+    org: 'Bangkok University',
+    summary:
+      'Led cross-functional student projects from requirement gathering to delivery, bridging technical logic and creative direction.',
+  },
+]
 
 export const portfolioLinks: PortfolioLink[] = [
   {

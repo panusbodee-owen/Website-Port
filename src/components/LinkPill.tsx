@@ -12,17 +12,17 @@ export default function LinkPill({ item }: LinkPillProps) {
       href={item.href}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center justify-between gap-4 rounded-[1.4rem] border border-stone-200 bg-[rgba(255,252,247,0.85)] px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-stone-400 hover:bg-white"
+      className="group flex items-center justify-between gap-4 rounded-[1.6rem] px-5 py-5 transition duration-300 hover:-translate-y-0.5 glass-surface"
     >
       <div>
-        <p className="text-sm text-stone-900">{item.label}</p>
-        <p className="mt-1 text-sm leading-6 text-stone-500">
+        <p className="text-sm text-[rgba(238,240,255,0.92)]">{item.label}</p>
+        <p className="mt-1 text-sm leading-6 text-[rgba(238,240,255,0.6)]">
           {item.description}
         </p>
       </div>
       <ArrowUpRight
         size={18}
-        className="shrink-0 text-stone-500 transition group-hover:text-stone-950"
+        className="shrink-0 text-[rgba(238,240,255,0.6)] transition group-hover:text-[rgba(238,240,255,0.92)]"
       />
     </a>
   )

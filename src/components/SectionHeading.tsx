@@ -12,10 +12,10 @@ export default function SectionHeading({
   tone = 'light',
 }: SectionHeadingProps) {
   const eyebrowClass =
-    tone === 'dark' ? 'text-stone-400' : 'text-stone-500'
-  const titleClass = tone === 'dark' ? 'text-stone-50' : 'text-stone-900'
+    tone === 'dark' ? 'text-[rgba(238,240,255,0.55)]' : 'text-[rgba(238,240,255,0.55)]'
+  const titleClass = tone === 'dark' ? 'text-[rgba(238,240,255,0.92)]' : 'text-[rgba(238,240,255,0.92)]'
   const descriptionClass =
-    tone === 'dark' ? 'text-stone-300' : 'text-stone-600'
+    tone === 'dark' ? 'text-[rgba(238,240,255,0.72)]' : 'text-[rgba(238,240,255,0.72)]'
 
   return (
     <div className="max-w-2xl space-y-4">
