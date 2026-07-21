@@ -79,7 +79,7 @@ export default function WorkDetailPage() {
             <img
               src={currentWork.image}
               alt={currentWork.title}
-              className="h-full min-h-[20rem] w-full object-cover"
+              className="monochrome-media h-full min-h-[20rem] w-full object-cover"
             />
           </div>
         </header>

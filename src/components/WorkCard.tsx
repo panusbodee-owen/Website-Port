@@ -15,7 +15,7 @@ export default function WorkCard({ work, index }: WorkCardProps) {
         <img
           src={work.image}
           alt={work.title}
-          className="h-full min-h-[18rem] w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+          className="monochrome-media h-full min-h-[18rem] w-full object-cover transition duration-700 group-hover:scale-[1.04]"
           loading="lazy"
         />
       </div>

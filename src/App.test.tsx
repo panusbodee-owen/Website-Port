@@ -32,4 +32,37 @@ describe('Portfolio app', () => {
       screen.getByRole('heading', { name: /The story behind the work\./i }),
     ).toBeInTheDocument()
   })
+
+  it('renders personal origin story on about page', () => {
+    window.location.hash = '#/about'
+    render(<App />)
+
+    expect(
+      screen.getAllByText(
+        /started with an opportunity introduced through my university faculty/i,
+      ).length,
+    ).toBeGreaterThan(0)
+  })
+
+  it('renders a visual archive on the home page', () => {
+    window.location.hash = '#/'
+    render(<App />)
+
+    expect(
+      screen.getByRole('heading', { name: /Visual archive for work in motion\./i }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByAltText(/temporary pass and coffee during an early workday/i),
+    ).toBeInTheDocument()
+  })
+
+  it('renders process and systems images on the about page', () => {
+    window.location.hash = '#/about'
+    render(<App />)
+
+    expect(screen.getByAltText(/process flow mapped on a whiteboard/i)).toBeInTheDocument()
+    expect(
+      screen.getByAltText(/terminal session showing technical tools and logs/i),
+    ).toBeInTheDocument()
+  })
 })

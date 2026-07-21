@@ -6,7 +6,7 @@ import LinkPill from '@/components/LinkPill'
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
 import WorkCard from '@/components/WorkCard'
-import { notes, portfolioLinks, profile, works } from '@/data/portfolio'
+import { homeVisuals, notes, portfolioLinks, profile, works } from '@/data/portfolio'
 
 const selectedWorks = works.slice(0, 4)
 
@@ -96,6 +96,14 @@ export default function Home() {
               </p>
             </div>
 
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+              <img
+                src={homeVisuals[2].image}
+                alt={homeVisuals[2].alt}
+                className="monochrome-media h-[19rem] w-full object-cover"
+              />
+            </div>
+
             <div className="rounded-[2rem] p-6 text-[rgba(238,240,255,0.92)] glass-surface">
               <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
                 Principles
@@ -106,7 +114,7 @@ export default function Home() {
                     key={principle}
                     className="flex items-center gap-2 border-b border-white/10 pb-3 text-sm text-[rgba(238,240,255,0.74)] last:border-b-0"
                   >
-                    <Dot size={18} className="text-[rgba(126,231,255,0.9)]" />
+                    <Dot size={18} className="text-white/80" />
                     {principle}
                   </div>
                 ))}
@@ -187,6 +195,42 @@ export default function Home() {
               View one more case
               <ArrowUpRight size={16} />
             </Link>
+          </div>
+        </section>
+
+        <section className="grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.8fr_1.2fr] glass-surface">
+          <SectionHeading
+            eyebrow="Visual Archive"
+            title="Visual archive for work in motion."
+            description="A quieter image layer for this portfolio, matched to the way I move between field work, systems, and a more personal visual mark."
+          />
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {homeVisuals.map((item, index) => (
+              <article
+                key={item.slug}
+                className={`overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/5 ${
+                  index === 1 ? 'md:col-span-2' : ''
+                }`}
+              >
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className={`monochrome-media w-full object-cover ${
+                    index === 1 ? 'h-60 md:h-72' : 'h-60'
+                  }`}
+                  loading="lazy"
+                />
+                <div className="space-y-3 p-5">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+                    {item.title}
+                  </p>
+                  <p className="text-sm leading-7 text-[rgba(238,240,255,0.68)]">
+                    {item.summary}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 

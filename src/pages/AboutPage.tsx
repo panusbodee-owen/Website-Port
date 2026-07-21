@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom'
 
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
-import { portfolioLinks, profile, skills, timeline, tools } from '@/data/portfolio'
+import {
+  aboutVisuals,
+  portfolioLinks,
+  profile,
+  skills,
+  timeline,
+  tools,
+} from '@/data/portfolio'
 
 export default function AboutPage() {
   return (
@@ -29,6 +36,10 @@ export default function AboutPage() {
                 UI design, and process thinking—bridging stakeholders, logic, and visual decisions
                 to deliver outcomes that feel intentional, not rushed.
               </p>
+              <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.72)]">
+                My journey started with an opportunity introduced through my university faculty,
+                and that path shaped how I approach work today: flexible in role, strict in clarity.
+              </p>
             </div>
 
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
@@ -41,7 +52,7 @@ export default function AboutPage() {
                     key={principle}
                     className="flex items-center gap-2 border-b border-white/10 pb-3 text-sm text-[rgba(238,240,255,0.72)] last:border-b-0"
                   >
-                    <Dot size={18} className="text-[rgba(126,231,255,0.9)]" />
+                    <Dot size={18} className="text-white/80" />
                     {principle}
                   </div>
                 ))}
@@ -57,6 +68,43 @@ export default function AboutPage() {
           <div className="grid gap-6 text-sm leading-7 text-[rgba(238,240,255,0.66)] md:grid-cols-2">
             {profile.aboutLong.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
+          <div className="grid gap-3 md:grid-cols-[0.7fr_1.3fr] md:items-end">
+            <h2 className="font-display text-4xl leading-tight text-[rgba(238,240,255,0.92)] md:text-5xl">
+              Process, systems, and the tools behind them.
+            </h2>
+            <p className="text-sm leading-7 text-[rgba(238,240,255,0.66)]">
+              These images are placed as a visual counterpart to the way I work: turning
+              logic into flow, and staying close enough to the technical layer to keep
+              decisions concrete.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {aboutVisuals.map((item) => (
+              <article
+                key={item.slug}
+                className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/5"
+              >
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="monochrome-media h-72 w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="space-y-3 p-5">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+                    {item.title}
+                  </p>
+                  <p className="text-sm leading-7 text-[rgba(238,240,255,0.68)]">
+                    {item.summary}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         </section>

@@ -32,6 +32,14 @@ export type WorkItem = {
   image: string
 }
 
+export type VisualItem = {
+  slug: string
+  title: string
+  alt: string
+  summary: string
+  image: string
+}
+
 type ImageSize =
   | 'square_hd'
   | 'square'
@@ -59,9 +67,9 @@ export const profile = {
     'What I care about most is making complexity feel simple. I like systems that are elegant, projects that run clearly, and interfaces that feel intentional rather than loud.',
   ],
   aboutLong: [
-    'My work lives where structure meets taste. I enjoy shaping projects from ambiguity into a clear plan, aligning people around milestones, and keeping execution calm even under pressure.',
-    'I care about interfaces that feel intentional: clean hierarchy, disciplined spacing, and motion that supports comprehension, not distraction.',
-    'I am comfortable moving between stakeholders, system logic, and visual decisions—because in real projects, clarity is a shared outcome, not a single role.',
+    'My path into PM, UI, and systems work started with an opportunity introduced through my university faculty. What began as a chance to try this direction turned into a way of working that fits how I think: structured, adaptable, and calm under complexity.',
+    'I care about interfaces that feel intentional: clean hierarchy, disciplined spacing, and motion that supports comprehension, not distraction. I like work that turns loose ideas into something people can align around quickly.',
+    'I can work across many kinds of problems and roles, especially when they require ownership, clarity, and coordination. The kind of work I avoid most is service-heavy work with little room to think, structure, or improve the system behind it.',
   ],
   principles: [
     'Clarity over noise',
@@ -275,3 +283,64 @@ export const featuredSlugs = works.map((work) => work.slug)
 
 export const getWorkBySlug = (slug: string) =>
   works.find((work) => work.slug === slug)
+
+export const homeVisuals: VisualItem[] = [
+  {
+    slug: 'field-pass',
+    title: 'Field Access',
+    alt: 'Temporary pass and coffee during an early workday',
+    summary:
+      'A candid workday moment that fits the part of my practice grounded in real environments, context switching, and being close to operations.',
+    image: createImage(
+      'black and white editorial photograph of a hand holding a temporary employee pass above a wooden worktable with an iced coffee cup and a closed laptop in the background, candid documentary style, soft blur, premium monochrome magazine photography',
+      'portrait_4_3',
+    ),
+  },
+  {
+    slug: 'market-screen',
+    title: 'Precision Under Pressure',
+    alt: 'Laptop screen showing financial charts and performance metrics',
+    summary:
+      'I stay interested in systems where timing, data, and disciplined interpretation matter, especially financial and analytical environments.',
+    image: createImage(
+      'black and white photograph of a laptop screen showing dense financial trading charts, grid lines, statistics panels, and performance metrics, realistic desk setup, sharp contrast, refined monochrome technology editorial style',
+      'landscape_16_9',
+    ),
+  },
+  {
+    slug: 'portrait-mark',
+    title: 'Personal Mark',
+    alt: 'Minimal black and white portrait illustration',
+    summary:
+      'A softer counterpoint for the portfolio, used like a personal stamp rather than a formal corporate headshot.',
+    image: createImage(
+      'minimal black and white line illustration portrait of a young professional with simple rounded features, thick ink outlines, quiet playful character, clean white background, editorial identity mark',
+      'square_hd',
+    ),
+  },
+]
+
+export const aboutVisuals: VisualItem[] = [
+  {
+    slug: 'whiteboard-flow',
+    title: 'Process Mapping',
+    alt: 'Process flow mapped on a whiteboard',
+    summary:
+      'This is the side of my work that likes to turn ambiguity into steps, conditions, and decisions people can follow.',
+    image: createImage(
+      'black and white photo of a whiteboard filled with process flow diagrams, arrows, handwritten notes, and structured system thinking, office wall setting, documentary editorial photography, realistic monochrome grain',
+      'portrait_4_3',
+    ),
+  },
+  {
+    slug: 'terminal-tools',
+    title: 'Technical Curiosity',
+    alt: 'Terminal session showing technical tools and logs',
+    summary:
+      'Even when I work from a PM or functional angle, I like staying close to tools, logs, and technical surfaces so decisions remain grounded.',
+    image: createImage(
+      'black and white close-up photograph of a laptop screen showing a terminal session with command line tools, logs, ASCII interface, and developer workflow, cinematic contrast, realistic monochrome editorial photography',
+      'portrait_4_3',
+    ),
+  },
+]

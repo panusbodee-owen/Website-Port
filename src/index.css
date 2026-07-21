@@ -7,17 +7,17 @@
 :root {
   --font-display: 'Fraunces', serif;
   --font-body: 'Instrument Sans', 'Segoe UI', 'Noto Sans', sans-serif;
-  --bg-canvas: #07070c;
-  --bg-depth: #0b0b14;
-  --text-primary: #eef0ff;
-  --text-secondary: rgba(238, 240, 255, 0.72);
-  --text-tertiary: rgba(238, 240, 255, 0.5);
-  --line-subtle: rgba(238, 240, 255, 0.12);
-  --surface: rgba(255, 255, 255, 0.04);
+  --bg-canvas: #020202;
+  --bg-depth: #0a0a0a;
+  --text-primary: #f5f5f5;
+  --text-secondary: rgba(245, 245, 245, 0.72);
+  --text-tertiary: rgba(245, 245, 245, 0.48);
+  --line-subtle: rgba(255, 255, 255, 0.12);
+  --surface: rgba(255, 255, 255, 0.03);
   --surface-strong: rgba(255, 255, 255, 0.08);
-  --accent-a: #7ee7ff;
-  --accent-b: #d2ff8f;
-  --accent-c: #ffcf8a;
+  --accent-a: #f2f2f2;
+  --accent-b: #a6a6a6;
+  --accent-c: #5f5f5f;
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
@@ -34,9 +34,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(126, 231, 255, 0.16), transparent 35%),
-    radial-gradient(circle at 30% 60%, rgba(210, 255, 143, 0.08), transparent 40%),
-    radial-gradient(circle at top right, rgba(255, 207, 138, 0.1), transparent 32%),
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 32%),
+    radial-gradient(circle at 28% 60%, rgba(255, 255, 255, 0.05), transparent 34%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 28%),
     linear-gradient(180deg, var(--bg-canvas), var(--bg-depth));
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -64,13 +64,17 @@ a {
 .glass-surface {
   background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.02)
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.015)
     );
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.monochrome-media {
+  filter: grayscale(1) contrast(1.05) brightness(0.92);
 }
 
 @media (prefers-reduced-motion: reduce) {
