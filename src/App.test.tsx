@@ -60,6 +60,9 @@ describe('Portfolio app', () => {
 
     expect(screen.getByLabelText(/story progress/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/interactive hero scene/i)).toBeInTheDocument()
+    expect(screen.getByTestId('ambient-backdrop')).toBeInTheDocument()
+    expect(screen.queryByText(/scene responds to motion/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/minimal interactive/i)).not.toBeInTheDocument()
   })
 
   it('renders process and systems images on the about page', () => {

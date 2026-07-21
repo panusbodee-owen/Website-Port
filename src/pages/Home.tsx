@@ -158,12 +158,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-signal rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-[rgba(215,232,186,0.38)] px-5 py-4">
-              <div className="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-[rgba(46,80,119,0.72)]">
-                <span>Scene responds to motion</span>
-                <span>Minimal interactive</span>
-              </div>
-            </div>
           </aside>
         </section>
 

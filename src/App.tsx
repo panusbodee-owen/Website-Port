@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
+import AmbientBackdrop from '@/components/AmbientBackdrop'
 import InteractiveCursor from '@/components/InteractiveCursor'
 import StoryProgress from '@/components/StoryProgress'
 import AboutPage from '@/pages/AboutPage'
@@ -9,6 +10,7 @@ import WorkDetailPage from '@/pages/WorkDetailPage'
 export default function App() {
   return (
     <HashRouter>
+      <AmbientBackdrop />
       <StoryProgress />
       <InteractiveCursor />
       <Routes>
