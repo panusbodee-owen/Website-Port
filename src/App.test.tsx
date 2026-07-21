@@ -54,6 +54,14 @@ describe('Portfolio app', () => {
     expect(screen.getByAltText(/legacy project image from the original framer portfolio/i)).toBeInTheDocument()
   })
 
+  it('renders interactive storytelling elements on the home page', () => {
+    window.location.hash = '#/'
+    render(<App />)
+
+    expect(screen.getByLabelText(/story progress/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/interactive hero scene/i)).toBeInTheDocument()
+  })
+
   it('renders process and systems images on the about page', () => {
     window.location.hash = '#/about'
     render(<App />)
@@ -82,5 +90,13 @@ describe('Portfolio app', () => {
       'src',
       expect.stringContaining('framerusercontent.com/images/dTRcdFRu3rTiJJGCQVUxodknYY'),
     )
+  })
+
+  it('renders interactive case study cues on work detail pages', () => {
+    window.location.hash = '#/works/project-management'
+    render(<App />)
+
+    expect(screen.getByLabelText(/story progress/i)).toBeInTheDocument()
+    expect(screen.getByText(/scroll to trace the case/i)).toBeInTheDocument()
   })
 })

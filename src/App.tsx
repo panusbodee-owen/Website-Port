@@ -1,5 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
+import InteractiveCursor from '@/components/InteractiveCursor'
+import StoryProgress from '@/components/StoryProgress'
 import AboutPage from '@/pages/AboutPage'
 import Home from '@/pages/Home'
 import WorkDetailPage from '@/pages/WorkDetailPage'
@@ -7,6 +9,8 @@ import WorkDetailPage from '@/pages/WorkDetailPage'
 export default function App() {
   return (
     <HashRouter>
+      <StoryProgress />
+      <InteractiveCursor />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />

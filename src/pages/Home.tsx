@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowDownRight, ArrowUpRight, Dot, Sparkles } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 
@@ -6,12 +6,16 @@ import LinkPill from '@/components/LinkPill'
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
 import WorkCard from '@/components/WorkCard'
+import { useRevealOnScroll } from '@/lib/useRevealOnScroll'
 import { homeVisuals, notes, portfolioLinks, profile, works } from '@/data/portfolio'
 
 const selectedWorks = works.slice(0, 4)
 
 export default function Home() {
   const [searchParams] = useSearchParams()
+  const [heroShift, setHeroShift] = useState({ x: 0, y: 0 })
+
+  useRevealOnScroll()
 
   useEffect(() => {
     const section = searchParams.get('section')
@@ -27,6 +31,16 @@ export default function Home() {
     return () => window.clearTimeout(timer)
   }, [searchParams])
 
+  const handleHeroMove = (event: React.MouseEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - bounds.left - bounds.width / 2) / bounds.width
+    const y = (event.clientY - bounds.top - bounds.height / 2) / bounds.height
+
+    setHeroShift({ x, y })
+  }
+
+  const resetHeroMove = () => setHeroShift({ x: 0, y: 0 })
+
   return (
     <div
       id="top"
@@ -37,21 +51,24 @@ export default function Home() {
       <TopNav />
 
       <main className="mx-auto flex max-w-7xl flex-col gap-24 px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-14">
-        <section className="grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
+        <section
+          data-reveal
+          className="reveal-section grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end"
+        >
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[rgba(238,240,255,0.7)] backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.14)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[rgba(46,80,119,0.8)] backdrop-blur">
               <Sparkles size={14} />
               Portfolio 2026
             </div>
 
             <div className="max-w-4xl space-y-6">
-              <p className="text-sm uppercase tracking-[0.3em] text-[rgba(238,240,255,0.55)]">
+              <p className="text-sm uppercase tracking-[0.3em] text-[rgba(46,80,119,0.7)]">
                 {profile.location}
               </p>
-              <h1 className="font-display text-[4rem] leading-[0.92] tracking-[-0.04em] text-[rgba(238,240,255,0.92)] md:text-[6.5rem]">
+              <h1 className="font-display text-[4rem] leading-[0.92] tracking-[-0.04em] text-[rgba(17,17,17,0.94)] md:text-[6.5rem]">
                 {profile.name}
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-[rgba(238,240,255,0.72)] md:text-xl">
+              <p className="max-w-2xl text-lg leading-8 text-[rgba(17,17,17,0.72)] md:text-xl">
                 {profile.statement}
               </p>
             </div>
@@ -59,14 +76,14 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/?section=works"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm text-[#07070c] transition hover:-translate-y-0.5 hover:bg-white/90"
+                className="inline-flex items-center gap-2 rounded-full bg-[#2E5077] px-6 py-3 text-sm text-[#F7F4EC] transition hover:-translate-y-0.5 hover:bg-[#24415f]"
               >
                 Explore selected work
                 <ArrowDownRight size={16} />
               </Link>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-[rgba(238,240,255,0.82)] transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-6 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:-translate-y-0.5 hover:border-[rgba(77,161,169,0.45)] hover:bg-white"
               >
                 About me
                 <ArrowUpRight size={16} />
@@ -75,7 +92,7 @@ export default function Home() {
                 href={portfolioLinks[1].href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-[rgba(238,240,255,0.82)] transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-6 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:-translate-y-0.5 hover:border-[#FFA630] hover:bg-white"
               >
                 Open LinkedIn
                 <ArrowUpRight size={16} />
@@ -83,20 +100,35 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="grid gap-4">
-            <div className="rounded-[2rem] p-6 backdrop-blur glass-surface">
-              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
+          <aside
+            aria-label="Interactive hero scene"
+            className="grid gap-4"
+            onMouseMove={handleHeroMove}
+            onMouseLeave={resetHeroMove}
+          >
+            <div
+              className="hero-card rounded-[2rem] p-6 backdrop-blur glass-surface"
+              style={{
+                transform: `translate3d(${heroShift.x * 10}px, ${heroShift.y * 8}px, 0)`,
+              }}
+            >
+              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
                 Current focus
               </p>
-              <p className="mt-4 font-display text-3xl leading-tight text-[rgba(238,240,255,0.92)]">
+              <p className="mt-4 font-display text-3xl leading-tight text-[rgba(17,17,17,0.92)]">
                 Calm interfaces. Structured execution. Clear thinking.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[rgba(238,240,255,0.66)]">
+              <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.66)]">
                 {profile.intro}
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+            <div
+              className="hero-card overflow-hidden rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55"
+              style={{
+                transform: `translate3d(${heroShift.x * -14}px, ${heroShift.y * -10}px, 0)`,
+              }}
+            >
               <img
                 src={homeVisuals[2].image}
                 alt={homeVisuals[2].alt}
@@ -104,20 +136,32 @@ export default function Home() {
               />
             </div>
 
-            <div className="rounded-[2rem] p-6 text-[rgba(238,240,255,0.92)] glass-surface">
-              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(238,240,255,0.5)]">
+            <div
+              className="hero-card rounded-[2rem] p-6 text-[rgba(17,17,17,0.92)] glass-surface"
+              style={{
+                transform: `translate3d(${heroShift.x * 8}px, ${heroShift.y * -6}px, 0)`,
+              }}
+            >
+              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
                 Principles
               </p>
               <div className="mt-4 space-y-3">
                 {profile.principles.map((principle) => (
                   <div
                     key={principle}
-                    className="flex items-center gap-2 border-b border-white/10 pb-3 text-sm text-[rgba(238,240,255,0.74)] last:border-b-0"
+                    className="flex items-center gap-2 border-b border-[rgba(46,80,119,0.08)] pb-3 text-sm text-[rgba(17,17,17,0.72)] last:border-b-0"
                   >
-                    <Dot size={18} className="text-white/80" />
+                    <Dot size={18} className="text-[#4DA1A9]" />
                     {principle}
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="hero-signal rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-[rgba(215,232,186,0.38)] px-5 py-4">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-[rgba(46,80,119,0.72)]">
+                <span>Scene responds to motion</span>
+                <span>Minimal interactive</span>
               </div>
             </div>
           </aside>
@@ -125,7 +169,8 @@ export default function Home() {
 
         <section
           id="about"
-          className="grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] glass-surface"
+          data-reveal
+          className="reveal-section grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] glass-surface"
         >
           <SectionHeading
             eyebrow="About"
@@ -138,7 +183,7 @@ export default function Home() {
               {profile.about.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-sm leading-7 text-[rgba(238,240,255,0.66)]"
+                  className="text-sm leading-7 text-[rgba(17,17,17,0.68)]"
                 >
                   {paragraph}
                 </p>
@@ -146,27 +191,27 @@ export default function Home() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              <div className="rounded-[1.7rem] border border-white/10 bg-white/5 p-5">
-                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+              <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
                   Positioning
                 </p>
-                <p className="mt-3 text-sm leading-7 text-[rgba(238,240,255,0.74)]">
+                <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
                   {profile.title}
                 </p>
               </div>
-              <div className="rounded-[1.7rem] border border-white/10 bg-white/5 p-5">
-                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+              <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
                   Availability
                 </p>
-                <p className="mt-3 text-sm leading-7 text-[rgba(238,240,255,0.74)]">
+                <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
                   {profile.availability}
                 </p>
               </div>
-              <div className="rounded-[1.7rem] border border-white/10 bg-white/5 p-5">
-                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+              <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
+                <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
                   Perspective
                 </p>
-                <p className="mt-3 text-sm leading-7 text-[rgba(238,240,255,0.74)]">
+                <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
                   Design should feel quiet, deliberate, and useful.
                 </p>
               </div>
@@ -174,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="works" className="space-y-10">
+        <section id="works" data-reveal className="reveal-section space-y-10">
           <SectionHeading
             eyebrow="Selected Works"
             title="Work with rhythm, systems, and intent."
@@ -190,7 +235,7 @@ export default function Home() {
           <div className="flex justify-center">
             <Link
               to={`/works/${works[4].slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-[rgba(238,240,255,0.82)] transition hover:border-white/25 hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-5 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:border-[#4DA1A9] hover:bg-white"
             >
               View one more case
               <ArrowUpRight size={16} />
@@ -198,7 +243,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.8fr_1.2fr] glass-surface">
+        <section
+          data-reveal
+          className="reveal-section grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.8fr_1.2fr] glass-surface"
+        >
           <SectionHeading
             eyebrow="Visual Archive"
             title="Visual archive for work in motion."
@@ -209,7 +257,7 @@ export default function Home() {
             {homeVisuals.map((item, index) => (
               <article
                 key={item.slug}
-                className={`overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/5 ${
+                className={`overflow-hidden rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55 ${
                   index === 1 ? 'md:col-span-2' : ''
                 }`}
               >
@@ -222,10 +270,10 @@ export default function Home() {
                   loading="lazy"
                 />
                 <div className="space-y-3 p-5">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[rgba(238,240,255,0.5)]">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
                     {item.title}
                   </p>
-                  <p className="text-sm leading-7 text-[rgba(238,240,255,0.68)]">
+                  <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
                     {item.summary}
                   </p>
                 </div>
@@ -236,7 +284,8 @@ export default function Home() {
 
         <section
           id="notes"
-          className="grid gap-8 rounded-[2.4rem] p-6 text-[rgba(238,240,255,0.92)] md:p-8 lg:grid-cols-[0.7fr_1.3fr] glass-surface"
+          data-reveal
+          className="reveal-section grid gap-8 rounded-[2.4rem] p-6 text-[rgba(17,17,17,0.92)] md:p-8 lg:grid-cols-[0.7fr_1.3fr] glass-surface"
         >
           <SectionHeading
             eyebrow="Notes"
@@ -249,7 +298,7 @@ export default function Home() {
             {notes.map((note) => (
               <div
                 key={note}
-                className="rounded-[1.7rem] border border-white/10 bg-white/5 p-5 text-sm leading-7 text-[rgba(238,240,255,0.66)]"
+                className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5 text-sm leading-7 text-[rgba(17,17,17,0.68)]"
               >
                 {note}
               </div>
@@ -257,7 +306,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <section
+          id="contact"
+          data-reveal
+          className="reveal-section grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"
+        >
           <SectionHeading
             eyebrow="Contact"
             title="Open for conversations with substance."
