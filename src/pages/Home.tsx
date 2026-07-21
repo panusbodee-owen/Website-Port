@@ -53,7 +53,7 @@ export default function Home() {
       <main className="mx-auto flex max-w-7xl flex-col gap-24 px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-14">
         <section
           data-reveal
-          className="reveal-section grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end"
+          className="reveal-section grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-start"
         >
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.14)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[rgba(46,80,119,0.8)] backdrop-blur">
