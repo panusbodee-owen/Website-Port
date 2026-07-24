@@ -113,4 +113,20 @@ describe('Portfolio app', () => {
     expect(screen.getByText(/กรุงเทพมหานคร ประเทศไทย/i)).toBeInTheDocument()
     expect(screen.getAllByRole('link', { name: /เกี่ยวกับผม/i }).length).toBeGreaterThan(0)
   })
+
+  it('reads thai language from url query and updates metadata', () => {
+    window.history.replaceState({}, '', '/?lang=th')
+    window.location.hash = '#/'
+    document.title = 'Panusbodee Portfolio'
+    document.head.innerHTML = '<meta name="description" content="default description" />'
+
+    render(<App />)
+
+    expect(document.documentElement.lang).toBe('th')
+    expect(document.title).toMatch(/Panusbodee/)
+    expect(document.title).toMatch(/พอร์ตโฟลิโอ/i)
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toMatch(
+      /พอร์ตโฟลิโอ/,
+    )
+  })
 })
