@@ -1,11 +1,14 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 
-import { getWorkBySlug, works } from '@/data/portfolio'
+import { useLanguage } from '@/contexts/useLanguage'
+import { getLocalizedText, getPortfolioContent, getWorkBySlug } from '@/data/portfolio'
 import { useRevealOnScroll } from '@/lib/useRevealOnScroll'
 
 export default function WorkDetailPage() {
   const { slug } = useParams<{ slug: string }>()
+  const { language } = useLanguage()
+  const { ui, works } = getPortfolioContent(language)
   const currentWork = slug ? getWorkBySlug(slug) : undefined
 
   useRevealOnScroll()
@@ -28,11 +31,11 @@ export default function WorkDetailPage() {
             className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-4 py-2 text-sm text-[rgba(17,17,17,0.78)] transition hover:border-[#4DA1A9] hover:bg-white"
           >
             <ArrowLeft size={16} />
-            Back to home
+            {ui.workDetail.backHome}
           </Link>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.14)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.72)]">
-            <span>{currentWork.category}</span>
+            <span>{getLocalizedText(currentWork.category, language)}</span>
             <span>•</span>
             <span>{currentWork.year}</span>
           </div>
@@ -44,38 +47,38 @@ export default function WorkDetailPage() {
         >
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.28em] text-[rgba(46,80,119,0.72)]">
-              Case Study
+              {ui.workDetail.caseStudy}
             </p>
             <h1 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-6xl">
-              {currentWork.title}
+              {getLocalizedText(currentWork.title, language)}
             </h1>
             <p className="max-w-xl text-sm leading-7 text-[rgba(17,17,17,0.7)] md:text-base">
-              {currentWork.summary}
+              {getLocalizedText(currentWork.summary, language)}
             </p>
             <p className="inline-flex rounded-full border border-[rgba(46,80,119,0.14)] bg-[rgba(215,232,186,0.32)] px-4 py-2 text-xs uppercase tracking-[0.28em] text-[rgba(46,80,119,0.74)]">
-              Scroll to trace the case
+              {ui.workDetail.scrollCue}
             </p>
 
             <div className="grid gap-4 border-t border-[rgba(46,80,119,0.12)] pt-5 sm:grid-cols-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-                  Role
+                  {ui.workDetail.role}
                 </p>
                 <p className="mt-2 text-sm text-[rgba(17,17,17,0.82)]">
-                  {currentWork.role}
+                  {getLocalizedText(currentWork.role, language)}
                 </p>
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-                  Client
+                  {ui.workDetail.client}
                 </p>
                 <p className="mt-2 text-sm text-[rgba(17,17,17,0.82)]">
-                  {currentWork.client}
+                  {getLocalizedText(currentWork.client, language)}
                 </p>
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-                  Year
+                  {ui.workDetail.year}
                 </p>
                 <p className="mt-2 text-sm text-[rgba(17,17,17,0.82)]">
                   {currentWork.year}
@@ -87,7 +90,7 @@ export default function WorkDetailPage() {
           <div className="case-spotlight overflow-hidden rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55">
             <img
               src={currentWork.image}
-              alt={currentWork.title}
+              alt={getLocalizedText(currentWork.title, language)}
               className="monochrome-media h-full min-h-[20rem] w-full object-cover"
             />
           </div>
@@ -96,26 +99,26 @@ export default function WorkDetailPage() {
         <section data-reveal className="reveal-section grid gap-5 md:grid-cols-3">
           <article className="case-panel rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
             <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-              Challenge
+              {ui.workDetail.challenge}
             </p>
             <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
-              {currentWork.challenge}
+              {getLocalizedText(currentWork.challenge, language)}
             </p>
           </article>
           <article className="case-panel rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
             <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-              Approach
+              {ui.workDetail.approach}
             </p>
             <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
-              {currentWork.approach}
+              {getLocalizedText(currentWork.approach, language)}
             </p>
           </article>
           <article className="case-panel rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
             <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-              Outcome
+              {ui.workDetail.outcome}
             </p>
             <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
-              {currentWork.outcome}
+              {getLocalizedText(currentWork.outcome, language)}
             </p>
           </article>
         </section>
@@ -123,7 +126,7 @@ export default function WorkDetailPage() {
         <section data-reveal className="reveal-section rounded-[2.6rem] p-6 md:p-8 glass-surface">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="font-display text-3xl text-[rgba(17,17,17,0.92)] md:text-4xl">
-              Project Tags
+              {ui.workDetail.projectTags}
             </h2>
             {currentWork.credits.startsWith('http') ? (
               <a
@@ -132,7 +135,7 @@ export default function WorkDetailPage() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-[#4DA1A9] bg-[rgba(77,161,169,0.08)] px-4 py-2 text-sm text-[#2E5077] transition hover:border-[#2E5077] hover:bg-[rgba(77,161,169,0.16)]"
               >
-                Open credits
+                {ui.workDetail.openCredits}
                 <ArrowUpRight size={16} />
               </a>
             ) : null}
@@ -140,16 +143,16 @@ export default function WorkDetailPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             {currentWork.tags.map((tag) => (
               <span
-                key={tag}
+                key={tag.en}
                 className="rounded-full border border-[rgba(46,80,119,0.12)] bg-[rgba(215,232,186,0.34)] px-4 py-2 text-sm text-[rgba(17,17,17,0.72)]"
               >
-                {tag}
+                {getLocalizedText(tag, language)}
               </span>
             ))}
           </div>
           {currentWork.credits.startsWith('http') ? null : (
             <p className="mt-6 text-sm leading-7 text-[rgba(17,17,17,0.64)]">
-              Credits: {currentWork.credits}
+              {ui.workDetail.credits}: {currentWork.credits}
             </p>
           )}
         </section>
@@ -163,11 +166,11 @@ export default function WorkDetailPage() {
             className="group rounded-[1.4rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5 transition hover:border-[#4DA1A9] hover:bg-white/75"
           >
             <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-              Previous project
+              {ui.workDetail.previousProject}
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
               <p className="font-display text-2xl leading-tight text-[rgba(17,17,17,0.92)]">
-                {previousWork.title}
+                {getLocalizedText(previousWork.title, language)}
               </p>
               <ArrowLeft
                 size={20}
@@ -180,11 +183,11 @@ export default function WorkDetailPage() {
             className="group rounded-[1.4rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5 transition hover:border-[#FFA630] hover:bg-white/75"
           >
             <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.64)]">
-              Next project
+              {ui.workDetail.nextProject}
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
               <p className="font-display text-2xl leading-tight text-[rgba(17,17,17,0.92)]">
-                {nextWork.title}
+                {getLocalizedText(nextWork.title, language)}
               </p>
               <ArrowRight
                 size={20}

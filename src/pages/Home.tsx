@@ -6,14 +6,16 @@ import LinkPill from '@/components/LinkPill'
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
 import WorkCard from '@/components/WorkCard'
+import { useLanguage } from '@/contexts/useLanguage'
 import { useRevealOnScroll } from '@/lib/useRevealOnScroll'
-import { homeVisuals, notes, portfolioLinks, profile, works } from '@/data/portfolio'
-
-const selectedWorks = works.slice(0, 4)
+import { getLocalizedText, getPortfolioContent } from '@/data/portfolio'
 
 export default function Home() {
   const [searchParams] = useSearchParams()
   const [heroShift, setHeroShift] = useState({ x: 0, y: 0 })
+  const { language } = useLanguage()
+  const { homeVisuals, notes, portfolioLinks, profile, ui, works } = getPortfolioContent(language)
+  const selectedWorks = works.slice(0, 4)
 
   useRevealOnScroll()
 
@@ -58,18 +60,18 @@ export default function Home() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.14)] bg-white/70 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[rgba(46,80,119,0.8)] backdrop-blur">
               <Sparkles size={14} />
-              Portfolio 2026
+              {ui.home.badge}
             </div>
 
             <div className="max-w-4xl space-y-6">
               <p className="text-sm uppercase tracking-[0.3em] text-[rgba(46,80,119,0.7)]">
-                {profile.location}
+                {getLocalizedText(profile.location, language)}
               </p>
               <h1 className="font-display text-[4rem] leading-[0.92] tracking-[-0.04em] text-[rgba(17,17,17,0.94)] md:text-[6.5rem]">
                 {profile.name}
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[rgba(17,17,17,0.72)] md:text-xl">
-                {profile.statement}
+                {getLocalizedText(profile.statement, language)}
               </p>
             </div>
 
@@ -78,14 +80,14 @@ export default function Home() {
                 to="/?section=works"
                 className="inline-flex items-center gap-2 rounded-full bg-[#2E5077] px-6 py-3 text-sm text-[#F7F4EC] transition hover:-translate-y-0.5 hover:bg-[#24415f]"
               >
-                Explore selected work
+                {ui.home.ctaWorks}
                 <ArrowDownRight size={16} />
               </Link>
               <Link
                 to="/about"
                 className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-6 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:-translate-y-0.5 hover:border-[rgba(77,161,169,0.45)] hover:bg-white"
               >
-                About me
+                {ui.home.ctaAbout}
                 <ArrowUpRight size={16} />
               </Link>
               <a
@@ -94,7 +96,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-6 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:-translate-y-0.5 hover:border-[#FFA630] hover:bg-white"
               >
-                Open LinkedIn
+                {ui.home.ctaLinkedIn}
                 <ArrowUpRight size={16} />
               </a>
             </div>
@@ -114,7 +116,7 @@ export default function Home() {
             >
               <img
                 src={homeVisuals[2].image}
-                alt={homeVisuals[2].alt}
+                alt={getLocalizedText(homeVisuals[2].alt, language)}
                 className="monochrome-media h-[19rem] w-full object-cover"
               />
             </div>
@@ -126,13 +128,13 @@ export default function Home() {
               }}
             >
               <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
-                Current focus
+                {ui.home.currentFocus}
               </p>
               <p className="mt-4 font-display text-3xl leading-tight text-[rgba(17,17,17,0.92)]">
-                Calm interfaces. Structured execution. Clear thinking.
+                {ui.home.currentFocusTitle}
               </p>
               <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.66)]">
-                {profile.intro}
+                {getLocalizedText(profile.intro, language)}
               </p>
             </div>
 
@@ -143,16 +145,16 @@ export default function Home() {
               }}
             >
               <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
-                Principles
+                {ui.home.principles}
               </p>
               <div className="mt-4 space-y-3">
                 {profile.principles.map((principle) => (
                   <div
-                    key={principle}
+                    key={principle.en}
                     className="flex items-center gap-2 border-b border-[rgba(46,80,119,0.08)] pb-3 text-sm text-[rgba(17,17,17,0.72)] last:border-b-0"
                   >
                     <Dot size={18} className="text-[#4DA1A9]" />
-                    {principle}
+                    {getLocalizedText(principle, language)}
                   </div>
                 ))}
               </div>
@@ -167,19 +169,19 @@ export default function Home() {
           className="reveal-section grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] glass-surface"
         >
           <SectionHeading
-            eyebrow="About"
-            title="Bridging structure and taste."
-            description="A portfolio for work that lives between strategy, design systems, and project ownership."
+            eyebrow={ui.home.aboutEyebrow}
+            title={ui.home.aboutTitle}
+            description={ui.home.aboutDescription}
           />
 
           <div className="space-y-8">
             <div className="grid gap-4 md:grid-cols-2">
               {profile.about.map((paragraph) => (
                 <p
-                  key={paragraph}
+                  key={paragraph.en}
                   className="text-sm leading-7 text-[rgba(17,17,17,0.68)]"
                 >
-                  {paragraph}
+                  {getLocalizedText(paragraph, language)}
                 </p>
               ))}
             </div>
@@ -187,26 +189,26 @@ export default function Home() {
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
-                  Positioning
+                  {ui.home.positioning}
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
-                  {profile.title}
+                  {getLocalizedText(profile.title, language)}
                 </p>
               </div>
               <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
-                  Availability
+                  {ui.home.availability}
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
-                  {profile.availability}
+                  {getLocalizedText(profile.availability, language)}
                 </p>
               </div>
               <div className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
-                  Perspective
+                  {ui.home.perspective}
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[rgba(17,17,17,0.74)]">
-                  Design should feel quiet, deliberate, and useful.
+                  {ui.home.perspectiveText}
                 </p>
               </div>
             </div>
@@ -231,7 +233,7 @@ export default function Home() {
               to={`/works/${works[4].slug}`}
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-5 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:border-[#4DA1A9] hover:bg-white"
             >
-              View one more case
+              {ui.home.moreCase}
               <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -242,9 +244,9 @@ export default function Home() {
           className="reveal-section grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.8fr_1.2fr] glass-surface"
         >
           <SectionHeading
-            eyebrow="Visual Archive"
-            title="Visual archive for work in motion."
-            description="A quieter image layer for this portfolio, matched to the way I move between field work, systems, and a more personal visual mark."
+            eyebrow={ui.home.visualArchiveEyebrow}
+            title={ui.home.visualArchiveTitle}
+            description={ui.home.visualArchiveDescription}
           />
 
           <div className="grid gap-4 md:grid-cols-3">
@@ -257,7 +259,7 @@ export default function Home() {
               >
                 <img
                   src={item.image}
-                  alt={item.alt}
+                  alt={getLocalizedText(item.alt, language)}
                   className={`monochrome-media w-full object-cover ${
                     index === 1 ? 'h-60 md:h-72' : 'h-60'
                   }`}
@@ -265,10 +267,10 @@ export default function Home() {
                 />
                 <div className="space-y-3 p-5">
                   <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
-                    {item.title}
+                    {getLocalizedText(item.title, language)}
                   </p>
                   <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
-                    {item.summary}
+                    {getLocalizedText(item.summary, language)}
                   </p>
                 </div>
               </article>
@@ -282,19 +284,19 @@ export default function Home() {
           className="reveal-section grid gap-8 rounded-[2.4rem] p-6 text-[rgba(17,17,17,0.92)] md:p-8 lg:grid-cols-[0.7fr_1.3fr] glass-surface"
         >
           <SectionHeading
-            eyebrow="Notes"
-            title="Things I keep close to the way I work."
-            description="Outside core projects, I stay interested in disciplines that reward precision, discipline, and sensitivity to detail."
+            eyebrow={ui.home.notesEyebrow}
+            title={ui.home.notesTitle}
+            description={ui.home.notesDescription}
             tone="dark"
           />
 
           <div className="grid gap-4 md:grid-cols-3">
             {notes.map((note) => (
               <div
-                key={note}
+                key={note.en}
                 className="rounded-[1.7rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-5 text-sm leading-7 text-[rgba(17,17,17,0.68)]"
               >
-                {note}
+                {getLocalizedText(note, language)}
               </div>
             ))}
           </div>
@@ -306,14 +308,14 @@ export default function Home() {
           className="reveal-section grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"
         >
           <SectionHeading
-            eyebrow="Contact"
-            title="Open for conversations with substance."
-            description="If the work involves thoughtful execution, design sensitivity, or a need to bring structure to complexity, I would love to hear about it."
+            eyebrow={ui.home.contactEyebrow}
+            title={ui.home.contactTitle}
+            description={ui.home.contactDescription}
           />
 
           <div className="grid gap-4">
             {portfolioLinks.map((item) => (
-              <LinkPill key={item.label} item={item} />
+              <LinkPill key={item.href} item={item} />
             ))}
           </div>
         </section>

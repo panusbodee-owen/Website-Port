@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import App from './App'
@@ -101,5 +101,16 @@ describe('Portfolio app', () => {
 
     expect(screen.getByLabelText(/story progress/i)).toBeInTheDocument()
     expect(screen.getByText(/scroll to trace the case/i)).toBeInTheDocument()
+  })
+
+  it('switches the interface to thai', () => {
+    window.location.hash = '#/'
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: /thai/i }))
+
+    expect(screen.getByRole('heading', { name: /Panusbodee Pisutsuwimon/i })).toBeInTheDocument()
+    expect(screen.getByText(/กรุงเทพมหานคร ประเทศไทย/i)).toBeInTheDocument()
+    expect(screen.getAllByRole('link', { name: /เกี่ยวกับผม/i }).length).toBeGreaterThan(0)
   })
 })

@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
+import { useLanguage } from '@/contexts/useLanguage'
 import {
   aboutVisuals,
+  getLocalizedText,
+  getPortfolioContent,
   portfolioLinks,
   profile,
   skills,
@@ -13,6 +16,9 @@ import {
 } from '@/data/portfolio'
 
 export default function AboutPage() {
+  const { language } = useLanguage()
+  const { ui } = getPortfolioContent(language)
+
   return (
     <div className="relative min-h-screen">
       <div className="page-grain pointer-events-none absolute inset-0 opacity-30" />
@@ -21,39 +27,36 @@ export default function AboutPage() {
       <main className="mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-16 pt-10 md:px-6 md:pb-24 md:pt-14">
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 lg:grid-cols-[1.1fr_0.9fr] glass-surface">
           <SectionHeading
-            eyebrow="About"
-            title="The story behind the work."
-            description="I work where project structure, calm visual design, and systems thinking meet—so complexity becomes something people can actually move with."
+            eyebrow={ui.aboutPage.eyebrow}
+            title={ui.aboutPage.title}
+            description={ui.aboutPage.description}
           />
 
           <div className="space-y-6">
             <div className="rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
               <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
-                Summary
+                {ui.aboutPage.summary}
               </p>
               <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
-                I'm {profile.shortName} ({profile.name}). I lead work across project management,
-                UI design, and process thinking—bridging stakeholders, logic, and visual decisions
-                to deliver outcomes that feel intentional, not rushed.
+                {ui.aboutPage.summaryLead}
               </p>
               <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
-                My journey started with an opportunity introduced through my university faculty,
-                and that path shaped how I approach work today: flexible in role, strict in clarity.
+                {ui.aboutPage.summaryOrigin}
               </p>
             </div>
 
             <div className="rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
               <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
-                Principles
+                {ui.aboutPage.principles}
               </p>
               <div className="mt-4 space-y-3">
                 {profile.principles.map((principle) => (
                   <div
-                    key={principle}
+                    key={principle.en}
                     className="flex items-center gap-2 border-b border-[rgba(46,80,119,0.08)] pb-3 text-sm text-[rgba(17,17,17,0.72)] last:border-b-0"
                   >
                     <Dot size={18} className="text-[#4DA1A9]" />
-                    {principle}
+                    {getLocalizedText(principle, language)}
                   </div>
                 ))}
               </div>
@@ -63,11 +66,11 @@ export default function AboutPage() {
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
           <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
-            A calm way to tell a serious story.
+            {ui.aboutPage.storyTitle}
           </h2>
           <div className="grid gap-6 text-sm leading-7 text-[rgba(17,17,17,0.68)] md:grid-cols-2">
             {profile.aboutLong.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph.en}>{getLocalizedText(paragraph, language)}</p>
             ))}
           </div>
         </section>
@@ -75,12 +78,10 @@ export default function AboutPage() {
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
           <div className="grid gap-3 md:grid-cols-[0.7fr_1.3fr] md:items-end">
             <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
-              Process, systems, and the tools behind them.
+              {ui.aboutPage.processTitle}
             </h2>
             <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
-              These images are placed as a visual counterpart to the way I work: turning
-              logic into flow, and staying close enough to the technical layer to keep
-              decisions concrete.
+              {ui.aboutPage.processDescription}
             </p>
           </div>
 
@@ -92,16 +93,16 @@ export default function AboutPage() {
               >
                 <img
                   src={item.image}
-                  alt={item.alt}
+                  alt={getLocalizedText(item.alt, language)}
                   className="monochrome-media h-72 w-full object-cover"
                   loading="lazy"
                 />
                 <div className="space-y-3 p-5">
                   <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
-                    {item.title}
+                    {getLocalizedText(item.title, language)}
                   </p>
                   <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
-                    {item.summary}
+                    {getLocalizedText(item.summary, language)}
                   </p>
                 </div>
               </article>
@@ -111,12 +112,12 @@ export default function AboutPage() {
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
           <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
-            Timeline
+            {ui.aboutPage.timelineTitle}
           </h2>
           <div className="grid gap-4">
             {timeline.map((item) => (
               <div
-                key={`${item.year}-${item.title}`}
+                key={`${item.year}-${item.title.en}`}
                 className="grid gap-3 rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6 md:grid-cols-[0.2fr_0.8fr]"
               >
                 <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
@@ -124,13 +125,13 @@ export default function AboutPage() {
                 </p>
                 <div className="space-y-2">
                   <p className="text-sm text-[rgba(17,17,17,0.92)]">
-                    {item.title}
+                    {getLocalizedText(item.title, language)}
                   </p>
                   <p className="text-sm text-[rgba(46,80,119,0.66)]">
-                    {item.org}
+                    {getLocalizedText(item.org, language)}
                   </p>
                   <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
-                    {item.summary}
+                    {getLocalizedText(item.summary, language)}
                   </p>
                 </div>
               </div>
@@ -140,19 +141,19 @@ export default function AboutPage() {
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
           <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
-            Skills & Tools
+            {ui.aboutPage.skillsTitle}
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {skills.map((item) => (
               <div
-                key={item.label}
+                key={item.label.en}
                 className="rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6"
               >
                 <p className="text-sm text-[rgba(17,17,17,0.92)]">
-                  {item.label}
+                  {getLocalizedText(item.label, language)}
                 </p>
                 <p className="mt-2 text-sm leading-7 text-[rgba(17,17,17,0.68)]">
-                  {item.description}
+                  {getLocalizedText(item.description, language)}
                 </p>
               </div>
             ))}
@@ -161,10 +162,10 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-2">
             {tools.map((item) => (
               <span
-                key={item}
+                key={item.en}
                 className="rounded-full border border-[rgba(46,80,119,0.12)] bg-[rgba(215,232,186,0.34)] px-4 py-2 text-sm text-[rgba(17,17,17,0.72)]"
               >
-                {item}
+                {getLocalizedText(item, language)}
               </span>
             ))}
           </div>
@@ -172,13 +173,13 @@ export default function AboutPage() {
           <div className="grid gap-3 md:grid-cols-2">
             {portfolioLinks.map((item) => (
               <a
-                key={item.label}
+                key={item.href}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between rounded-[1.6rem] border border-[rgba(46,80,119,0.12)] bg-white/55 px-5 py-5 text-sm text-[rgba(17,17,17,0.72)] transition hover:-translate-y-0.5 hover:border-[#4DA1A9] hover:bg-white/75"
               >
-                <span>{item.label}</span>
+                <span>{getLocalizedText(item.label, language)}</span>
                 <ArrowUpRight size={18} className="text-[rgba(46,80,119,0.72)]" />
               </a>
             ))}
@@ -189,7 +190,7 @@ export default function AboutPage() {
               to="/"
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-5 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:border-[#FFA630] hover:bg-white"
             >
-              Back to home
+              {ui.aboutPage.backHome}
             </Link>
           </div>
         </section>
