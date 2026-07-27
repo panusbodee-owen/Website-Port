@@ -33,29 +33,29 @@ export default function AboutPage() {
           />
 
           <div className="space-y-6">
-            <div className="rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
+            <div className="rounded-[2rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
                 {ui.aboutPage.summary}
               </p>
-              <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
+              <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                 {ui.aboutPage.summaryLead}
               </p>
-              <p className="mt-4 text-sm leading-7 text-[rgba(17,17,17,0.72)]">
+              <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                 {ui.aboutPage.summaryOrigin}
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6">
-              <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
+            <div className="rounded-[2rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
                 {ui.aboutPage.principles}
               </p>
               <div className="mt-4 space-y-3">
                 {profile.principles.map((principle) => (
                   <div
                     key={principle.en}
-                    className="flex items-center gap-2 border-b border-[rgba(46,80,119,0.08)] pb-3 text-sm text-[rgba(17,17,17,0.72)] last:border-b-0"
+                    className="flex items-center gap-2 border-b border-[var(--line-subtle)] pb-3 text-sm text-[var(--text-secondary)] last:border-b-0"
                   >
-                    <Dot size={18} className="text-[#4DA1A9]" />
+                    <Dot size={18} className="text-[#4DA1A9] dark:text-[#58A6FF]" />
                     {getLocalizedText(principle, language)}
                   </div>
                 ))}
@@ -65,10 +65,10 @@ export default function AboutPage() {
         </section>
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
-          <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
+          <h2 className="font-display text-4xl leading-tight text-[var(--text-primary)] md:text-5xl">
             {ui.aboutPage.storyTitle}
           </h2>
-          <div className="grid gap-6 text-sm leading-7 text-[rgba(17,17,17,0.68)] md:grid-cols-2">
+          <div className="grid gap-6 text-sm leading-7 text-[var(--text-secondary)] md:grid-cols-2">
             {profile.aboutLong.map((paragraph) => (
               <p key={paragraph.en}>{getLocalizedText(paragraph, language)}</p>
             ))}
@@ -77,10 +77,10 @@ export default function AboutPage() {
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
           <div className="grid gap-3 md:grid-cols-[0.7fr_1.3fr] md:items-end">
-            <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
+            <h2 className="font-display text-4xl leading-tight text-[var(--text-primary)] md:text-5xl">
               {ui.aboutPage.processTitle}
             </h2>
-            <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
+            <p className="text-sm leading-7 text-[var(--text-secondary)]">
               {ui.aboutPage.processDescription}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function AboutPage() {
             {aboutVisuals.map((item) => (
               <article
                 key={item.slug}
-                className="overflow-hidden rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55"
+                className="overflow-hidden rounded-[1.8rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)]"
               >
                 <img
                   src={item.image}
@@ -98,10 +98,10 @@ export default function AboutPage() {
                   loading="lazy"
                 />
                 <div className="space-y-3 p-5">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[rgba(46,80,119,0.66)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--text-tertiary)]">
                     {getLocalizedText(item.title, language)}
                   </p>
-                  <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
+                  <p className="text-sm leading-7 text-[var(--text-secondary)]">
                     {getLocalizedText(item.summary, language)}
                   </p>
                 </div>
@@ -111,26 +111,26 @@ export default function AboutPage() {
         </section>
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
-          <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
+          <h2 className="font-display text-4xl leading-tight text-[var(--text-primary)] md:text-5xl">
             {ui.aboutPage.timelineTitle}
           </h2>
           <div className="grid gap-4">
             {timeline.map((item) => (
               <div
                 key={`${item.year}-${item.title.en}`}
-                className="grid gap-3 rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6 md:grid-cols-[0.2fr_0.8fr]"
+                className="grid gap-3 rounded-[1.8rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-6 md:grid-cols-[0.2fr_0.8fr]"
               >
-                <p className="text-xs uppercase tracking-[0.3em] text-[rgba(46,80,119,0.66)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
                   {item.year}
                 </p>
                 <div className="space-y-2">
-                  <p className="text-sm text-[rgba(17,17,17,0.92)]">
+                  <p className="text-sm font-medium text-[var(--text-primary)]">
                     {getLocalizedText(item.title, language)}
                   </p>
-                  <p className="text-sm text-[rgba(46,80,119,0.66)]">
+                  <p className="text-sm font-medium text-[var(--text-tertiary)]">
                     {getLocalizedText(item.org, language)}
                   </p>
-                  <p className="text-sm leading-7 text-[rgba(17,17,17,0.68)]">
+                  <p className="text-sm leading-7 text-[var(--text-secondary)]">
                     {getLocalizedText(item.summary, language)}
                   </p>
                 </div>
@@ -140,19 +140,19 @@ export default function AboutPage() {
         </section>
 
         <section className="grid gap-8 rounded-[2.6rem] p-6 md:p-10 glass-surface">
-          <h2 className="font-display text-4xl leading-tight text-[rgba(17,17,17,0.92)] md:text-5xl">
+          <h2 className="font-display text-4xl leading-tight text-[var(--text-primary)] md:text-5xl">
             {ui.aboutPage.skillsTitle}
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {skills.map((item) => (
               <div
                 key={item.label.en}
-                className="rounded-[1.8rem] border border-[rgba(46,80,119,0.12)] bg-white/55 p-6"
+                className="rounded-[1.8rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-6"
               >
-                <p className="text-sm text-[rgba(17,17,17,0.92)]">
+                <p className="text-sm font-medium text-[var(--text-primary)]">
                   {getLocalizedText(item.label, language)}
                 </p>
-                <p className="mt-2 text-sm leading-7 text-[rgba(17,17,17,0.68)]">
+                <p className="mt-2 text-sm leading-7 text-[var(--text-secondary)]">
                   {getLocalizedText(item.description, language)}
                 </p>
               </div>
@@ -163,7 +163,7 @@ export default function AboutPage() {
             {tools.map((item) => (
               <span
                 key={item.en}
-                className="rounded-full border border-[rgba(46,80,119,0.12)] bg-[rgba(215,232,186,0.34)] px-4 py-2 text-sm text-[rgba(17,17,17,0.72)]"
+                className="rounded-full border border-[var(--line-subtle)] bg-[var(--surface)] px-4 py-2 text-sm text-[var(--text-primary)] font-medium"
               >
                 {getLocalizedText(item, language)}
               </span>
@@ -177,10 +177,10 @@ export default function AboutPage() {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between rounded-[1.6rem] border border-[rgba(46,80,119,0.12)] bg-white/55 px-5 py-5 text-sm text-[rgba(17,17,17,0.72)] transition hover:-translate-y-0.5 hover:border-[#4DA1A9] hover:bg-white/75"
+                className="flex items-center justify-between rounded-[1.6rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] px-5 py-5 text-sm text-[var(--text-primary)] transition hover:-translate-y-0.5 hover:border-[#4DA1A9]"
               >
                 <span>{getLocalizedText(item.label, language)}</span>
-                <ArrowUpRight size={18} className="text-[rgba(46,80,119,0.72)]" />
+                <ArrowUpRight size={18} className="text-[var(--text-tertiary)]" />
               </a>
             ))}
           </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,80,119,0.18)] bg-white/70 px-5 py-3 text-sm text-[rgba(17,17,17,0.82)] transition hover:border-[#FFA630] hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line-subtle)] bg-[var(--surface-strong)] px-5 py-3 text-sm text-[var(--text-primary)] transition hover:border-[#FFA630]"
             >
               {ui.aboutPage.backHome}
             </Link>

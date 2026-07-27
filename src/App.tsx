@@ -4,24 +4,27 @@ import AmbientBackdrop from '@/components/AmbientBackdrop'
 import InteractiveCursor from '@/components/InteractiveCursor'
 import StoryProgress from '@/components/StoryProgress'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 import AboutPage from '@/pages/AboutPage'
 import Home from '@/pages/Home'
 import WorkDetailPage from '@/pages/WorkDetailPage'
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <HashRouter>
-        <AmbientBackdrop />
-        <StoryProgress />
-        <InteractiveCursor />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/works/:slug" element={<WorkDetailPage />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </HashRouter>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <HashRouter>
+          <AmbientBackdrop />
+          <StoryProgress />
+          <InteractiveCursor />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/works/:slug" element={<WorkDetailPage />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </HashRouter>
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
