@@ -622,6 +622,56 @@ body {
 
 .side-project-feature {
   align-items: center;
+  min-width: 0;
+}
+
+.side-project-feature__stack {
+  display: grid;
+  gap: 2rem;
+  min-width: 0;
+  width: 100%;
+}
+
+@media (min-width: 801px) {
+  .side-project-feature__stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .side-project-feature__card--myfxbook {
+    transform: none;
+  }
+
+  .side-project-feature__card--myfxbook:hover {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+
+  .side-project-feature__card--myfxbook > div:last-child,
+  .side-project-feature__card:first-child > div:last-child {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .side-project-feature__card--myfxbook > div:last-child {
+    justify-content: flex-start;
+  }
+
+  .side-project-feature__card:first-child > div:last-child {
+    justify-content: space-between;
+  }
+
+  .side-project-feature__card--myfxbook > div:last-child > a {
+    margin-top: auto;
+  }
+}
+
+.side-project-feature__card {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
 }
 
 .side-project-feature__card {
@@ -748,9 +798,49 @@ body {
   outline-offset: 4px;
 }
 
+.side-project-feature__myfxbook {
+  min-height: 22rem;
+  isolation: isolate;
+  background: linear-gradient(135deg, #193d67, #126e86 55%, #0b4d59);
+  color: #fffaf2;
+  cursor: pointer;
+  transition: transform 350ms ease, box-shadow 350ms ease;
+}
+
+.side-project-feature__myfxbook:hover {
+  transform: translateY(-5px) rotate(0.5deg);
+  box-shadow: 0 18px 40px rgba(18, 67, 92, 0.28);
+}
+
+.side-project-feature__myfxbook::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .22;
+  background-image: linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(135deg, black, transparent 68%);
+}
+
+.side-project-feature__myfxbook-chart { position: absolute; right: 1.3rem; top: 1.7rem; display: flex; align-items: end; gap: .35rem; height: 5.6rem; transform: skewY(-12deg); }
+.side-project-feature__myfxbook-chart i { display: block; width: .65rem; border-radius: .35rem .35rem 0 0; background: #d3dc31; animation: chart-rise 2.8s ease-in-out infinite alternate; }
+.side-project-feature__myfxbook-chart i:nth-child(1) { height: 1.5rem; background: #f0b4d9; }
+.side-project-feature__myfxbook-chart i:nth-child(2) { height: 2.2rem; animation-delay: -.3s; }
+.side-project-feature__myfxbook-chart i:nth-child(3) { height: 1.8rem; background: #ff6d2f; animation-delay: -.6s; }
+.side-project-feature__myfxbook-chart i:nth-child(4) { height: 3.5rem; animation-delay: -.9s; }
+.side-project-feature__myfxbook-chart i:nth-child(5) { height: 3rem; background: #f0b4d9; animation-delay: -1.2s; }
+.side-project-feature__myfxbook-chart i:nth-child(6) { height: 4.5rem; animation-delay: -1.5s; }
+.side-project-feature__myfxbook-chart i:nth-child(7) { height: 5.3rem; background: #ff6d2f; animation-delay: -1.8s; }
+.side-project-feature__myfxbook-title { display: block; position: relative; z-index: 1; margin-top: 5.2rem; overflow-wrap: anywhere; font: 700 clamp(2rem, 3.2vw, 3.2rem)/.9 var(--font-display); letter-spacing: -.06em; }
+.side-project-feature__myfxbook-copy { display: block; position: relative; z-index: 1; max-width: 16rem; margin-top: .8rem; color: rgba(255,250,242,.76); font-size: .82rem; line-height: 1.45; }
+.side-project-feature__myfxbook:focus-visible { outline: 3px solid #d3dc31; outline-offset: 4px; }
+@keyframes chart-rise { from { transform: scaleY(.8); transform-origin: bottom; } to { transform: scaleY(1.12); transform-origin: bottom; } }
+
 [data-theme='dark'] .side-project-feature__card { background: #344b42; }
 [data-theme='dark'] .side-project-feature__preview { background: #164e45; }
 [data-theme='dark'] .side-project-feature__fake-card { background: rgba(15, 47, 42, 0.76); }
+[data-theme='dark'] .side-project-feature__myfxbook { background: linear-gradient(135deg, #1f3d61, #155e73 55%, #123f48); }
 
 #top > main > section#notes {
   margin: 0 -5rem;

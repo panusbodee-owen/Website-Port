@@ -222,6 +222,7 @@ export default function Home() {
             }
           />
 
+          <div className="side-project-feature__stack">
           <article className="side-project-feature__card group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
             <a
               href="https://panusbodee-owen.github.io/vpk/"
@@ -285,6 +286,44 @@ export default function Home() {
               </div>
             </div>
           </article>
+          <article className="side-project-feature__card side-project-feature__card--myfxbook group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
+            <a
+              href="https://www.myfxbook.com/portfolio/tesy-live/12156356"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open Myfxbook portfolio"
+              className="side-project-feature__myfxbook relative block overflow-hidden rounded-[2.2rem] p-6 md:p-8"
+            >
+              <span className="side-project-feature__label">SIDE PROJECT / LIVE DATA</span>
+              <span className="side-project-feature__myfxbook-chart" aria-hidden="true">
+                <i /><i /><i /><i /><i /><i /><i />
+              </span>
+              <span className="side-project-feature__myfxbook-title">Myfxbook</span>
+              <span className="side-project-feature__myfxbook-copy">
+                {language === 'th' ? 'ติดตามพอร์ตและข้อมูลการเทรดแบบ Live' : 'A live portfolio and trading performance dashboard.'}
+              </span>
+              <span className="side-project-feature__open">{language === 'th' ? 'ดูพอร์ต' : 'View portfolio'} ↗</span>
+            </a>
+            <div className="flex items-end justify-between gap-4 px-2 pb-1 pt-6 md:px-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">Trading / Data</p>
+                <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">Myfxbook Portfolio</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
+                  {language === 'th' ? 'พื้นที่แสดงผลพอร์ตการเทรดที่เชื่อมกับข้อมูล Myfxbook' : 'A live-facing space for exploring portfolio performance through Myfxbook.'}
+                </p>
+              </div>
+              <a
+                href="https://www.myfxbook.com/portfolio/tesy-live/12156356"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#128fca] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#0b6e9e] transition hover:-translate-y-1"
+              >
+                {language === 'th' ? 'เปิดพอร์ต' : 'Open portfolio'}
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </article>
+          </div>
         </section>
 
         <section
