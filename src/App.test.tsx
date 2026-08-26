@@ -44,14 +44,12 @@ describe('Portfolio app', () => {
     ).toBeGreaterThan(0)
   })
 
-  it('renders a visual archive on the home page', () => {
+  it('keeps the visual archive removed from the home page', () => {
     window.location.hash = '#/'
     render(<App />)
 
-    expect(
-      screen.getByRole('heading', { name: /Visual archive for work in motion\./i }),
-    ).toBeInTheDocument()
-    expect(screen.getByAltText(/legacy project image from the original framer portfolio/i)).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /Visual archive for work in motion\./i })).not.toBeInTheDocument()
+    expect(screen.queryByAltText(/legacy project image from the original framer portfolio/i)).not.toBeInTheDocument()
   })
 
   it('renders interactive storytelling elements on the home page', () => {
@@ -75,12 +73,11 @@ describe('Portfolio app', () => {
     ).toBeInTheDocument()
   })
 
-  it('uses legacy framer assets for the home visual archive', () => {
+  it('does not render legacy visual archive assets on the home page', () => {
     window.location.hash = '#/'
     render(<App />)
 
-    const image = screen.getByAltText(/legacy project image from the original framer portfolio/i)
-    expect(image).toHaveAttribute('src', expect.stringContaining('framerusercontent.com/images'))
+    expect(screen.queryByAltText(/legacy project image from the original framer portfolio/i)).not.toBeInTheDocument()
   })
 
   it('uses legacy framer assets for work case studies', () => {

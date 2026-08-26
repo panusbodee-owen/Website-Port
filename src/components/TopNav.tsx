@@ -48,13 +48,13 @@ export default function TopNav() {
           </button>
 
           {/* Language Switcher */}
-          <div className="hidden items-center rounded-full border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-1 md:inline-flex">
+          <div className="language-switcher hidden items-center rounded-full border border-[var(--line-subtle)] bg-[var(--surface-strong)] p-1 md:inline-flex">
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`rounded-full px-3 py-1.5 text-xs transition ${
+              className={`language-option rounded-full px-3 py-1.5 text-xs transition ${
                 language === 'en'
-                  ? 'bg-[#2E5077] text-[#F7F4EC] dark:bg-[#388bfd] dark:text-[#0c1017]'
+                  ? 'language-option--active bg-[#2E5077] text-[#F7F4EC] dark:bg-[#388bfd] dark:text-[#0c1017]'
                   : 'text-[var(--text-secondary)]'
               }`}
             >
@@ -63,9 +63,9 @@ export default function TopNav() {
             <button
               type="button"
               onClick={() => setLanguage('th')}
-              className={`rounded-full px-3 py-1.5 text-xs transition ${
+              className={`language-option rounded-full px-3 py-1.5 text-xs transition ${
                 language === 'th'
-                  ? 'bg-[#2E5077] text-[#F7F4EC] dark:bg-[#388bfd] dark:text-[#0c1017]'
+                  ? 'language-option--active bg-[#2E5077] text-[#F7F4EC] dark:bg-[#388bfd] dark:text-[#0c1017]'
                   : 'text-[var(--text-secondary)]'
               }`}
             >

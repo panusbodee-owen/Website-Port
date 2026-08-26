@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { ArrowDownRight, ArrowUpRight, Dot, Sparkles } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Sparkles } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 
 import HeroVisualCard from '@/components/HeroVisualCard'
+import InteractivePlayground from '@/components/InteractivePlayground'
 import LinkPill from '@/components/LinkPill'
 import SectionHeading from '@/components/SectionHeading'
 import TopNav from '@/components/TopNav'
@@ -15,7 +16,7 @@ export default function Home() {
   const [searchParams] = useSearchParams()
   const [heroShift, setHeroShift] = useState({ x: 0, y: 0 })
   const { language } = useLanguage()
-  const { homeVisuals, notes, portfolioLinks, profile, ui, works } = getPortfolioContent(language)
+  const { notes, portfolioLinks, profile, ui, works } = getPortfolioContent(language)
   const selectedWorks = works.slice(0, 4)
 
   useRevealOnScroll()
@@ -105,6 +106,8 @@ export default function Home() {
 
           <aside
             aria-label="Interactive hero scene"
+            onMouseMove={handleHeroMove}
+            onMouseLeave={resetHeroMove}
             className="grid gap-6"
           >
             <HeroVisualCard />
@@ -205,42 +208,99 @@ export default function Home() {
         </section>
 
         <section
+          id="side-projects"
           data-reveal
-          className="reveal-section grid gap-8 rounded-[2.4rem] p-6 md:p-8 lg:grid-cols-[0.8fr_1.2fr] glass-surface"
+          className="reveal-section side-project-feature grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"
         >
           <SectionHeading
-            eyebrow={ui.home.visualArchiveEyebrow}
-            title={ui.home.visualArchiveTitle}
-            description={ui.home.visualArchiveDescription}
+            eyebrow={language === 'th' ? 'Side Project' : 'Side Project'}
+            title={language === 'th' ? 'โปรเจกต์ที่สร้างจากความอยากลอง' : 'A project built from curiosity.'}
+            description={
+              language === 'th'
+                ? 'พื้นที่ทดลองที่ผมออกแบบ ตั้งระบบ และลงมือทำเองตั้งแต่ต้นจนจบ'
+                : 'A small experiment where I handled the concept, interface, system, and implementation end to end.'
+            }
           />
 
-          <div className="grid gap-4 md:grid-cols-3">
-            {homeVisuals.map((item, index) => (
-              <article
-                key={item.slug}
-                className={`overflow-hidden rounded-[1.8rem] border border-[var(--line-subtle)] bg-[var(--surface-strong)] ${
-                  index === 1 ? 'md:col-span-2' : ''
-                }`}
-              >
-                <img
-                  src={item.image}
-                  alt={getLocalizedText(item.alt, language)}
-                  className={`monochrome-media w-full object-cover ${
-                    index === 1 ? 'h-60 md:h-72' : 'h-60'
-                  }`}
-                  loading="lazy"
-                />
-                <div className="space-y-3 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--text-tertiary)]">
-                    {getLocalizedText(item.title, language)}
-                  </p>
-                  <p className="text-sm leading-7 text-[var(--text-secondary)]">
-                    {getLocalizedText(item.summary, language)}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <article className="side-project-feature__card group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
+            <a
+              href="https://panusbodee-owen.github.io/vpk/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={language === 'th' ? 'เปิดเว็บไซต์พูดทำไม?' : 'Open Pood Thammai website'}
+              className="side-project-feature__preview group/preview relative block min-h-[18rem] overflow-hidden rounded-[2.2rem] p-6 md:min-h-[22rem] md:p-8"
+            >
+              <div className="side-project-feature__orb side-project-feature__orb--one" />
+              <div className="side-project-feature__orb side-project-feature__orb--two" />
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="side-project-feature__label">SIDE PROJECT / 2026</span>
+                <span className="side-project-feature__mark">✦</span>
+              </div>
+              <div className="relative z-10 mt-16 md:mt-20">
+                <p className="side-project-feature__name">พูดทำไม?</p>
+                <p className="side-project-feature__tagline">
+                  {language === 'th' ? 'สุ่มมาเลย เดี๋ยวก็พูดได้เองแหละ' : 'Pick a topic. Speak before you overthink.'}
+                </p>
+              </div>
+              <div className="side-project-feature__fake-card relative z-10 mt-7">
+                <span>{language === 'th' ? 'สุ่มหัวข้อฝึกพูด' : 'Speaking topic generator'}</span>
+                <span>↗</span>
+              </div>
+              <span className="side-project-feature__open">{language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'} ↗</span>
+            </a>
+
+            <div className="flex flex-col gap-5 px-2 pb-1 pt-6 md:flex-row md:items-end md:justify-between md:px-3">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
+                  {language === 'th' ? 'เว็บฝึกพูดฉับพลัน' : 'Impromptu speaking web app'}
+                </p>
+                <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">
+                  {language === 'th' ? 'พูดทำไม?' : 'Pood Thammai?'}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
+                  {language === 'th'
+                    ? 'เว็บสุ่มหัวข้อสำหรับฝึกพูด พร้อมระดับความยาก ตัวจับเวลา และ Feedback เบื้องต้น'
+                    : 'A playful speaking practice app with topic prompts, difficulty levels, timers, and lightweight feedback.'}
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <a
+                  href="https://panusbodee-owen.github.io/vpk/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#ff6d2f] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#c94c20] transition hover:-translate-y-1"
+                >
+                  {language === 'th' ? 'เปิดเว็บไซต์' : 'Open website'}
+                  <ArrowUpRight size={16} />
+                </a>
+                <a
+                  href="https://github.com/panusbodee-owen/vpk"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--line-subtle)] px-5 py-3 text-sm text-[var(--text-primary)] transition hover:-translate-y-1 hover:border-[#4DA1A9]"
+                >
+                  GitHub
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section
+          data-reveal
+          className="reveal-section interactive-lab grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"
+        >
+          <SectionHeading
+            eyebrow={language === 'th' ? 'Interactive Niche' : 'Interactive Niche'}
+            title={language === 'th' ? 'งานเล็ก ๆ ที่อยากให้ลองเล่น' : 'A small detail worth playing with.'}
+            description={
+              language === 'th'
+                ? 'พื้นที่ทดลอง animation ที่ตอบสนองกับการขยับและการเลือกของคุณ'
+                : 'A tiny animation playground that responds to your movement and choice.'
+            }
+          />
+          <InteractivePlayground language={language} />
         </section>
 
         <section
