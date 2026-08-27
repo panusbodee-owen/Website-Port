@@ -137,7 +137,6 @@ export default function HeroVisualCard() {
             <Compass size={13} className="text-[var(--text-tertiary)]" />
             Based in Thailand
           </span>
-          <span className="font-mono text-[10px] opacity-75">100% Client Focus</span>
         </div>
       </div>
     </div>

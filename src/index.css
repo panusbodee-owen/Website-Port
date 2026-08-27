@@ -478,6 +478,7 @@ body {
   transform: rotate(-24deg);
   opacity: 0.95;
   pointer-events: none;
+  animation: hero-stroke-drift 12s ease-in-out infinite;
 }
 
 #top > main > section:first-of-type::after {
@@ -493,6 +494,17 @@ body {
   border-radius: 45% 55% 60% 45%;
   transform: rotate(22deg);
   pointer-events: none;
+  animation: hero-stroke-drift-reverse 15s ease-in-out infinite;
+}
+
+@keyframes hero-stroke-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-24deg); }
+  50% { transform: translate3d(-0.8rem, -0.7rem, 0) rotate(-19deg); }
+}
+
+@keyframes hero-stroke-drift-reverse {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(22deg); }
+  50% { transform: translate3d(0.65rem, 0.55rem, 0) rotate(28deg); }
 }
 
 #top > main > section:first-of-type > div:first-child,
@@ -878,15 +890,42 @@ body {
   #root { width: 100%; }
   #top > header > div { padding: 1rem 1.2rem; }
   #top > main { gap: 5rem; padding: 3.5rem 1.2rem 5rem; }
-  #top > main > section:first-of-type { padding: 1rem 0 3rem; }
-  #top > main > section:first-of-type::before { right: -11rem; top: 11rem; transform: scale(.7) rotate(-24deg); }
-  #top > main > section:first-of-type::after { right: -2rem; bottom: 0; transform: scale(.65) rotate(22deg); }
+  #top > main > section:first-of-type {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 1rem 0 3rem;
+  }
+  #top > main > section:first-of-type::before {
+    right: -11rem;
+    top: 11rem;
+    transform: scale(.7) rotate(-24deg);
+    animation-name: hero-stroke-drift-mobile;
+  }
+  #top > main > section:first-of-type::after {
+    right: -2rem;
+    bottom: 0;
+    transform: scale(.65) rotate(22deg);
+    animation-name: hero-stroke-drift-reverse-mobile;
+  }
   #top > main > section#about,
   #top > main > section#notes { margin: 0 -1.2rem; padding: 3.2rem 1.2rem; }
-  #top > main > section:first-of-type h1 { font-size: clamp(3.2rem, 16vw, 5.5rem); }
+  #top > main > section:first-of-type h1 {
+    font-size: clamp(2.6rem, 12vw, 5.5rem);
+    overflow-wrap: anywhere;
+  }
   #top > main > section:first-of-type aside > div:first-child { min-height: 24rem; }
   .visual-archive > div:last-child { grid-template-columns: 1fr; }
   .visual-archive > div:last-child > article:nth-child(2) { grid-column: auto; }
+}
+
+@keyframes hero-stroke-drift-mobile {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(.7) rotate(-24deg); }
+  50% { transform: translate3d(-0.45rem, -0.45rem, 0) scale(.7) rotate(-19deg); }
+}
+
+@keyframes hero-stroke-drift-reverse-mobile {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(.65) rotate(22deg); }
+  50% { transform: translate3d(0.4rem, 0.35rem, 0) scale(.65) rotate(28deg); }
 }
 
 [data-theme='dark'] body {
