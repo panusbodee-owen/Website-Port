@@ -659,7 +659,7 @@ body {
   }
 
   .side-project-feature__card--myfxbook > div:last-child,
-  .side-project-feature__card:first-child > div:last-child {
+  .side-project-feature__card:not(.side-project-feature__card--myfxbook) > div:last-child {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -670,12 +670,16 @@ body {
     justify-content: flex-start;
   }
 
-  .side-project-feature__card:first-child > div:last-child {
+  .side-project-feature__card:not(.side-project-feature__card--myfxbook) > div:last-child {
     justify-content: space-between;
   }
 
   .side-project-feature__card--myfxbook > div:last-child > a {
     margin-top: auto;
+  }
+
+  .side-project-feature__card--wide {
+    grid-column: 1 / -1;
   }
 }
 

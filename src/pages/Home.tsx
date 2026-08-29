@@ -323,6 +323,69 @@ export default function Home() {
               </a>
             </div>
           </article>
+          <article className="side-project-feature__card side-project-feature__card--wide group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
+            <a
+              href="https://panusbodee-owen.github.io/paitoon-service/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={language === 'th' ? 'เปิดเว็บไซต์ไพฑูรณ์ Service' : 'Open Paitoon Service website'}
+              className="side-project-feature__preview group/preview relative block min-h-[18rem] overflow-hidden rounded-[2.2rem] p-6 md:min-h-[22rem] md:p-8"
+            >
+              <div className="side-project-feature__orb side-project-feature__orb--one" />
+              <div className="side-project-feature__orb side-project-feature__orb--two" />
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="side-project-feature__label">SIDE PROJECT / 2026</span>
+                <span className="side-project-feature__mark">✦</span>
+              </div>
+              <div className="relative z-10 mt-16 md:mt-20">
+                <p className="side-project-feature__name">ไพฑูรณ์ Service</p>
+                <p className="side-project-feature__tagline">
+                  {language === 'th' ? 'คลิกจุดบนรถ เจออะไหล่ที่ใช่' : 'Click a spot on the car. Find the right part.'}
+                </p>
+              </div>
+              <div className="side-project-feature__fake-card relative z-10 mt-7">
+                <span>{language === 'th' ? 'ร้านอะไหล่ออนไลน์' : 'Auto parts storefront'}</span>
+                <span>↗</span>
+              </div>
+              <span className="side-project-feature__open">{language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'} ↗</span>
+            </a>
+
+            <div className="flex flex-col gap-5 px-2 pb-1 pt-6 md:flex-row md:items-end md:justify-between md:px-3">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
+                  {language === 'th' ? 'อีคอมเมิร์ซอะไหล่รถยนต์' : 'Auto parts e-commerce'}
+                </p>
+                <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">
+                  {language === 'th' ? 'ไพฑูรณ์ Service' : 'Paitoon Service'}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
+                  {language === 'th'
+                    ? 'เว็บร้านอะไหล่รถยนต์ พร้อมระบบดูสินค้า ตะกร้าสินค้า และแผนที่คลิกจุดบนตัวรถเพื่อค้นหาอะไหล่ที่ตรงตำแหน่งได้เร็วขึ้น'
+                    : 'An auto parts storefront with product browsing, a cart, and a car hotspot map for finding the right part fast.'}
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <a
+                  href="https://panusbodee-owen.github.io/paitoon-service/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#ff6d2f] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#c94c20] transition hover:-translate-y-1"
+                >
+                  {language === 'th' ? 'เปิดเว็บไซต์' : 'Open website'}
+                  <ArrowUpRight size={16} />
+                </a>
+                <a
+                  href="https://github.com/panusbodee-owen/paitoon-service"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--line-subtle)] px-5 py-3 text-sm text-[var(--text-primary)] transition hover:-translate-y-1 hover:border-[#4DA1A9]"
+                >
+                  GitHub
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </div>
+          </article>
           </div>
         </section>
 
