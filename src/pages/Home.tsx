@@ -223,159 +223,61 @@ export default function Home() {
           />
 
           <div className="side-project-feature__stack">
-          <article className="side-project-feature__card group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
-            <a
-              href="https://panusbodee-owen.github.io/vpk/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={language === 'th' ? 'เปิดเว็บไซต์พูดทำไม?' : 'Open Pood Thammai website'}
-              className="side-project-feature__preview group/preview relative block min-h-[18rem] overflow-hidden rounded-[2.2rem] p-6 md:min-h-[22rem] md:p-8"
-            >
-              <div className="side-project-feature__orb side-project-feature__orb--one" />
-              <div className="side-project-feature__orb side-project-feature__orb--two" />
-              <div className="relative z-10 flex items-start justify-between">
-                <span className="side-project-feature__label">SIDE PROJECT / 2026</span>
-                <span className="side-project-feature__mark">✦</span>
-              </div>
-              <div className="relative z-10 mt-16 md:mt-20">
-                <p className="side-project-feature__name">พูดทำไม?</p>
-                <p className="side-project-feature__tagline">
-                  {language === 'th' ? 'สุ่มมาเลย เดี๋ยวก็พูดได้เองแหละ' : 'Pick a topic. Speak before you overthink.'}
-                </p>
-              </div>
-              <div className="side-project-feature__fake-card relative z-10 mt-7">
-                <span>{language === 'th' ? 'สุ่มหัวข้อฝึกพูด' : 'Speaking topic generator'}</span>
-                <span>↗</span>
-              </div>
-              <span className="side-project-feature__open">{language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'} ↗</span>
-            </a>
-
-            <div className="flex flex-col gap-5 px-2 pb-1 pt-6 md:flex-row md:items-end md:justify-between md:px-3">
-              <div className="max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  {language === 'th' ? 'เว็บฝึกพูดฉับพลัน' : 'Impromptu speaking web app'}
-                </p>
-                <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">
-                  {language === 'th' ? 'พูดทำไม?' : 'Pood Thammai?'}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
-                  {language === 'th'
-                    ? 'เว็บสุ่มหัวข้อสำหรับฝึกพูด พร้อมระดับความยาก ตัวจับเวลา และ Feedback เบื้องต้น'
-                    : 'A playful speaking practice app with topic prompts, difficulty levels, timers, and lightweight feedback.'}
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-wrap gap-2">
-                <a
-                  href="https://panusbodee-owen.github.io/vpk/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#ff6d2f] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#c94c20] transition hover:-translate-y-1"
-                >
-                  {language === 'th' ? 'เปิดเว็บไซต์' : 'Open website'}
-                  <ArrowUpRight size={16} />
-                </a>
-                <a
-                  href="https://github.com/panusbodee-owen/vpk"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--line-subtle)] px-5 py-3 text-sm text-[var(--text-primary)] transition hover:-translate-y-1 hover:border-[#4DA1A9]"
-                >
-                  GitHub
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </div>
-          </article>
-          <article className="side-project-feature__card side-project-feature__card--myfxbook group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
-            <a
-              href="https://panusbodee-owen.github.io/forex-portfolio-calendar/outputs/index.html"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={language === 'th' ? 'เปิด Forex Portfolio Calendar' : 'Open Forex Portfolio Calendar'}
-              className="side-project-feature__myfxbook relative block overflow-hidden rounded-[2.2rem] p-6 md:p-8"
-            >
-              <span className="side-project-feature__label">SIDE PROJECT / MARKET TOOL</span>
-              <span className="side-project-feature__myfxbook-chart" aria-hidden="true">
-                <i /><i /><i /><i /><i /><i /><i />
-              </span>
-              <span className="side-project-feature__myfxbook-title">Forex<br />Calendar</span>
-              <span className="side-project-feature__myfxbook-copy">
-                {language === 'th' ? 'ปฏิทินติดตามพอร์ตและสรุปข้อมูลการเทรด' : 'A focused calendar for tracking portfolio activity and trading data.'}
-              </span>
-              <span className="side-project-feature__open">{language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'} ↗</span>
-            </a>
-            <div className="flex items-end justify-between gap-4 px-2 pb-1 pt-6 md:px-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">Trading / Calendar</p>
-                <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">Forex Portfolio Calendar</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
-                  {language === 'th' ? 'เครื่องมือดูปฏิทินและภาพรวมการเคลื่อนไหวของพอร์ตการเทรด' : 'A compact tool for exploring portfolio activity through a clear trading calendar.'}
-                </p>
-              </div>
-              <a
-                href="https://panusbodee-owen.github.io/forex-portfolio-calendar/outputs/index.html"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#128fca] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#0b6e9e] transition hover:-translate-y-1"
-              >
-                {language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'}
-                <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </article>
           <article className="side-project-feature__card side-project-feature__card--wide group overflow-hidden rounded-[2.8rem] p-5 md:p-7">
             <a
-              href="https://panusbodee-owen.github.io/paitoon-service/"
+              href="https://claude.ai/code/artifact/cfb6922d-af5f-47c6-a6a2-ded21b84531a"
               target="_blank"
               rel="noreferrer"
-              aria-label={language === 'th' ? 'เปิดเว็บไซต์ไพฑูรณ์ Service' : 'Open Paitoon Service website'}
+              aria-label={language === 'th' ? 'เปิด Repo Log ดูโปรเจกต์ทั้งหมด' : 'Open Repo Log, an index of every project'}
               className="side-project-feature__preview group/preview relative block min-h-[18rem] overflow-hidden rounded-[2.2rem] p-6 md:min-h-[22rem] md:p-8"
             >
               <div className="side-project-feature__orb side-project-feature__orb--one" />
               <div className="side-project-feature__orb side-project-feature__orb--two" />
               <div className="relative z-10 flex items-start justify-between">
-                <span className="side-project-feature__label">SIDE PROJECT / 2026</span>
+                <span className="side-project-feature__label">SIDE PROJECT / ALL REPOS</span>
                 <span className="side-project-feature__mark">✦</span>
               </div>
               <div className="relative z-10 mt-16 md:mt-20">
-                <p className="side-project-feature__name">ไพฑูรณ์ Service</p>
+                <p className="side-project-feature__name">Repo Log</p>
                 <p className="side-project-feature__tagline">
-                  {language === 'th' ? 'คลิกจุดบนรถ เจออะไหล่ที่ใช่' : 'Click a spot on the car. Find the right part.'}
+                  {language === 'th'
+                    ? 'ทุกโปรเจกต์ที่เคย commit อยู่ในหน้าเดียว กรองตามภาษา สุ่มดูโปรเจกต์ หรือ copy คำสั่ง git clone ไปเปิดในเครื่องได้เลย'
+                    : 'Every project ever committed, in one place. Filter by language, shuffle to a random pick, or copy the git clone command straight from the page.'}
                 </p>
               </div>
               <div className="side-project-feature__fake-card relative z-10 mt-7">
-                <span>{language === 'th' ? 'ร้านอะไหล่ออนไลน์' : 'Auto parts storefront'}</span>
+                <span>{language === 'th' ? '10 โปรเจกต์ + 7 sandbox' : '10 projects + 7 sandbox repos'}</span>
                 <span>↗</span>
               </div>
-              <span className="side-project-feature__open">{language === 'th' ? 'เปิดโปรเจกต์' : 'Open project'} ↗</span>
+              <span className="side-project-feature__open">{language === 'th' ? 'เปิด Repo Log' : 'Open Repo Log'} ↗</span>
             </a>
 
             <div className="flex flex-col gap-5 px-2 pb-1 pt-6 md:flex-row md:items-end md:justify-between md:px-3">
               <div className="max-w-xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--text-tertiary)]">
-                  {language === 'th' ? 'อีคอมเมิร์ซอะไหล่รถยนต์' : 'Auto parts e-commerce'}
+                  {language === 'th' ? 'ดัชนีโปรเจกต์ทั้งหมด' : 'A full project index'}
                 </p>
                 <h3 className="mt-2 font-display text-3xl leading-none text-[var(--text-primary)]">
-                  {language === 'th' ? 'ไพฑูรณ์ Service' : 'Paitoon Service'}
+                  {language === 'th' ? 'Repo Log — ดูทุกโปรเจกต์' : 'Repo Log — every project'}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
                   {language === 'th'
-                    ? 'เว็บร้านอะไหล่รถยนต์ พร้อมระบบดูสินค้า ตะกร้าสินค้า และแผนที่คลิกจุดบนตัวรถเพื่อค้นหาอะไหล่ที่ตรงตำแหน่งได้เร็วขึ้น'
-                    : 'An auto parts storefront with product browsing, a cart, and a car hotspot map for finding the right part fast.'}
+                    ? 'แทนที่จะเลือกโชว์แค่บางตัว หน้านี้ดึงรายชื่อ repo ทั้งหมดจาก GitHub มาเรียงตามวันอัปเดตล่าสุด พร้อมลิงก์ live demo และปุ่ม clone ในตัว'
+                    : 'Instead of curating a handful, this page pulls every repo from GitHub, sorted by last update, with live demo links and a one-click clone command.'}
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-2">
                 <a
-                  href="https://panusbodee-owen.github.io/paitoon-service/"
+                  href="https://claude.ai/code/artifact/cfb6922d-af5f-47c6-a6a2-ded21b84531a"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[#ff6d2f] px-5 py-3 text-sm font-medium text-[#fffaf2] shadow-[0_4px_0_#c94c20] transition hover:-translate-y-1"
                 >
-                  {language === 'th' ? 'เปิดเว็บไซต์' : 'Open website'}
+                  {language === 'th' ? 'เปิด Repo Log' : 'Open Repo Log'}
                   <ArrowUpRight size={16} />
                 </a>
                 <a
-                  href="https://github.com/panusbodee-owen/paitoon-service"
+                  href="https://github.com/panusbodee-owen"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-[var(--line-subtle)] px-5 py-3 text-sm text-[var(--text-primary)] transition hover:-translate-y-1 hover:border-[#4DA1A9]"
