@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Prompt:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Instrument Sans', 'Segoe UI', 'Noto Sans', sans-serif;
+  /* Google Sans เป็นฟอนต์ลิขสิทธิ์ของ Google ที่โหลดผ่าน Google Fonts ไม่ได้ จึงวางไว้
+     ตัวแรกให้เครื่องที่มีฟอนต์นี้อยู่แล้วใช้ได้เลย ถัดมาเป็น DM Sans (Google เป็นผู้ว่าจ้าง
+     ออกแบบ หน้าตาใกล้ที่สุด) ใช้กับตัวอักษรละติน และ Prompt รับช่วงตัวอักษรไทยที่ DM Sans
+     ไม่มี — เบราว์เซอร์เลือกให้เองทีละตัวอักษรตามลำดับในสแต็กนี้ */
+  --font-google-sans: 'Google Sans', 'Google Sans Text', 'Product Sans', 'DM Sans', 'Prompt', 'Segoe UI', system-ui, sans-serif;
+  --font-display: var(--font-google-sans);
+  --font-body: var(--font-google-sans);
   --bg-canvas: #f7f4ec;
   --bg-depth: #eef4e2;
   --text-primary: #111111;
